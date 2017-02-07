@@ -3,9 +3,9 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html class="no-js"> <!--<![endif]-->
+<html <?php language_attributes(); ?> class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
+        <meta charset="<?php bloginfo('charset'); ?>" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, minimumscale=1.0, maximumscale=1.0" />
         <title>Landon Hemsley | Digital Elegance Delivered</title>
@@ -15,16 +15,7 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-		<!--
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/styles.css">
-		-->
-		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="assets/js/main.js" type="text/javascript"></script>
-        <script src="assets/js/plugins.js"></script>
+        <?php wp_head(); ?>
     </head>
     <body>
         <div class="wrapper">
@@ -39,7 +30,8 @@
                         <span class="">Show Menu</span>
                     </button>
                     <a href="<?php echo home_url(); ?>" alt="<?php echo bloginfo('name'); ?>">
-                        <?php the_custom_logo(); ?>
+                        <?php //the_custom_logo(); ?>
+                        <img src="/lhcom/wp-content/themes/lmhcustom/assets/img/landon1.jpg" class="custom-logo" />
                     </a>
                     <span><?php echo bloginfo('name'); ?></span>
                 </div>
