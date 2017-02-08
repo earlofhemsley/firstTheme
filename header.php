@@ -22,22 +22,22 @@
 	    <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- The site image and toggle button for mobile devices-->
-                    <button class="navbar-toggle collapsed btn btn-xs" data-toggle="collapse" data-target="navbar-collapse">
+        <nav class="">
+            <div class="">
+                <div class="">
+                    <?php the_custom_logo(); ?>
+                    <button class="lmhcustom-nav-toggle btn btn-xs" data-toggle="collapse" data-target="navbar-collapse">
                         <span class="">Show Menu</span>
                     </button>
-                    <a href="<?php echo home_url(); ?>" alt="<?php echo bloginfo('name'); ?>">
-                        <?php //the_custom_logo(); ?>
-                        <img src="/lhcom/wp-content/themes/lmhcustom/assets/img/landon1.jpg" class="custom-logo" />
-                    </a>
-                    <span><?php echo bloginfo('name'); ?></span>
                 </div>
-                <div class="navbar-content" id="navbar-collapse">
-                    <?php wp_nav_menu(); ?>
-                </div>
+                <?php 
+                    wp_nav_menu( array( 
+                        'theme_location' => 'root',
+                        'menu_class' => '',
+                        'container' => 'div',
+                        'container_class' => 'lmhcustom-root-menu-container'
+                    )); 
+                ?>
             </div>
         </nav>
         <div class="header">
