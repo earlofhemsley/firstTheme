@@ -3,7 +3,7 @@
 
 //enqueue needed styles and scripts
 function lmhcustom_scripts_styles(){
-    wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap-min.css');
+    wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css');
     wp_enqueue_style('bootstrap-theme', get_template_directory_uri().'/assets/css/bootstrap-theme.min.css');
     wp_enqueue_style('core',get_stylesheet_uri(), array('bootstrap', 'bootstrap-theme'));
 

@@ -1,17 +1,9 @@
 /*This is style.css*/
 
-@import "assets/css/bootstrap.min.css";
-/*@import "assets/css/bootstrap-theme.min.css";
-*/
 
 /********************
  * General Styles
  * *****************/
-nav.navbar{
-    .container{
-        padding: 10px 0;
-    }
-}
 
 .custom-logo{
     width:150px;
@@ -26,18 +18,73 @@ nav.navbar{
     margin:auto;
 }
 
+/********************
+ * Navigation
+ * *****************/
+
+.custom-logo-link{
+    display:block;
+}
+
+.navbar .container{
+    padding: 10px 0;
+}
+
+.lmhcustom-nav-toggle{
+    margin: 5px;   
+}
+
+.site-name{
+    border-bottom: 5px solid black;
+    padding-bottom: 5px;
+}
+
+.lmhcustom-root-menu-container ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0px 10px 10px 10px;
+}
+
+.lmhcustom-root-menu-container ul li.menu-item{
+    display:inline-block;
+    width: 32%;
+    text-align:center;
+    padding:0px 10px 10px 10px;
+}
+
+.lmhcustom-root-menu-container > ul > li > a{
+    color: black;
+}
+
+.lmhcustom-root-menu-container > ul > li > a:hover{
+    text-decoration:underline;
+}
+
+
+
 /*********************
  * MEDIA QUERIES
  * ******************/
 
 /* sm screens and larger */
-@media (min-width: 768px){}
+@media (min-width: 768px){
+
+    .lmhcustom-nav-toggle{
+        display:none;   
+    }
+    .lmhcustom-root-menu-container{
+        display: block;
+    }
+
+
+}
 
 /* md screens and larger */
 @media (min-width: 992px){}
 
 /* lg screens and larger */
-@media (min-width: 1200px){}
+@media (min-width: 1200px){
+}
 
 
 /*
