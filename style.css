@@ -22,6 +22,10 @@
  * Navigation
  * *****************/
 
+nav.nav{
+    margin-top:10px;
+}
+
 .custom-logo-link{
     display:block;
 }
