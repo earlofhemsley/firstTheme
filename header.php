@@ -7,7 +7,8 @@
     <head>
         <meta charset="<?php bloginfo('charset'); ?>" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, minimumscale=1.0, maximumscale=1.0" />
+        <meta name="viewport" content="width=device-width" />
+        <!-- TODO: DYNAMIC TITLING -->
         <title>Landon Hemsley | Digital Elegance Delivered</title>
         <meta name="description" content="Landon Hemsley online resume and personal blog">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,29 +19,18 @@
         <?php wp_head(); ?>
     </head>
     <body>
-        <div class="wrapper">
+    <div class="" id="wrapper"  <?php if(is_front_page()){echo "style='display:none;'";} ?>>
 	    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <p class="text-center text-warning">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-            <nav class="nav">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3 col-md-2 text-center">
-                        <?php the_custom_logo(); ?>
-                        <button class="lmhcustom-nav-toggle btn btn-xs" data-toggle="collapse" data-target="#nav-collapse">
-                            <span class="">Show Menu</span>
-                        </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-9 col-md-10">
-                        <h1 class="site-name text-center"><?php bloginfo('name'); ?></h1>
-                        <?php 
-                            wp_nav_menu( array( 
-                                'theme_location' => 'root',
-                                'menu_class' => '',
-                                'container' => 'div',
-                                'container_class' => 'lmhcustom-root-menu-container collapse',
-                                'container_id' => 'nav-collapse'
-                            )); 
-                        ?>
-                    </div>
-                </div>
-            </nav>
+            <!-- <?php echo get_option('page_for_posts'); ?> --> 
+            <?php if(is_front_page())
+                {
+                    get_template_part("template-parts/header/home", "header");
+                } 
+                else
+                {
+                    get_template_part("template-parts/header/site", "header");
+                }
+
+            ?>
