@@ -1,6 +1,6 @@
 <!-- home-header -->
-    <div id="" class="section">
-        <div id="lmhcustom-leadbox">
+    <div id="" class="home-section">
+        <div class="home-leadbox">
             <div class="text-center"><?php the_custom_logo(); ?></div>
             <h1 class="text-center"><?php bloginfo("name"); ?></h1>
             <h2 class="text-center"><?php bloginfo("description"); ?></h2>
