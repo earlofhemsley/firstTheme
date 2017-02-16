@@ -29,13 +29,40 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .home-section{
-
+    border-bottom: 1px solid #efefef;
 }
 
-.home-leadbox{
-        
+#home-leadbox{
+    position:relative;       
 }
 
+.lmh-home-root-menu-container{
+    width: 500px;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    margin: 0 -250px;
+}
+
+.lmh-home-root-menu-container ul {
+    
+}
+
+.lmh-home-root-menu-container li.menu-item{
+    display:inline-block;
+    width: 164px;
+    padding: 5px 0;
+    text-align:center;
+}
+
+
+.lmh-home-root-menu-container li.menu-item > a{
+    color: black;
+}
+
+.lmh-home-root-menu-container li.menu-item > a:hover{
+    text-decoration: underline;
+}
 
 /********************
  * Navigation
@@ -81,6 +108,14 @@ nav.nav{
 
 .lmhcustom-root-menu-container > ul > li > a:hover{
     text-decoration:underline;
+}
+
+/*********************
+ * GENERAL STYLES
+ * ******************/
+
+.slightly-padded{
+    padding:5px;
 }
 
 
