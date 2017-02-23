@@ -21,6 +21,11 @@ function lmhcustom_setup(){
 }
 add_action('after_setup_theme', 'lmhcustom_setup');
 
+function lmhcustom_customizer_setup($wp_customize){
+    
+}
+
+
 //enqueue needed styles and scripts
 function lmhcustom_scripts_styles(){
     wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css');

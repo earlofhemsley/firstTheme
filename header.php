@@ -23,7 +23,6 @@
 	    <!--[if lt IE 7]>
             <p class="text-center text-warning">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-            <!-- <?php echo get_option('page_for_posts'); ?> --> 
             <?php if(is_front_page())
                 {
                     get_template_part("template-parts/header/home", "header");
