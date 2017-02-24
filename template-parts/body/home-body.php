@@ -8,12 +8,12 @@
         foreach($root_menu_items as $item){
             $page_ids[] = get_post_meta( $item->ID, '_menu_item_object_id', true);
         }
+        //TODO: ORDER IN THE SAME ORDER THAT THEY ARE IN THE MENU
         $query = new WP_Query( array(
             'post_type' => 'page',
             'post__in' => $page_ids 
         ) );
 
-        //var_dump($query); 
         while($query->have_posts()):
             $query->the_post();
 ?>
