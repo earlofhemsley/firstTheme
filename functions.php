@@ -22,8 +22,72 @@ function lmhcustom_setup(){
 add_action('after_setup_theme', 'lmhcustom_setup');
 
 function lmhcustom_customizer_setup($wp_customize){
+    /*
+        Have a "front page" section that allows for up to five pages to be set
+        The page title appears on the home page menu at the bottom
+        The page excerpt and content appears in the lower sections of the home page
+        The standard loop appears at the bottom 
+        Settings: front page parts 1-5
+        Controls: front page parts 1-5
+        Sections: Front page customization 
+     */ 
     
+    $wp_customize->add_section('home_page_sections', array(
+        'title'         =>      "Front page customization",
+        'description'   =>      "Set the pages you want to appear on the home page. Leave blank for no page to be assigned",
+        'priority'      =>      30,
+    ));
+
+    $wp_customize->add_setting('front_page_1');
+    $wp_customize->add_setting('front_page_2');
+    $wp_customize->add_setting('front_page_3');
+    $wp_customize->add_setting('front_page_4');
+    $wp_customize->add_setting('front_page_5');
+
+    $wp_customize->add_control('front_page_1', array(
+        'manager'       =>      $wp_customize,
+        'type'          =>      'dropdown-pages',
+        'description'   =>      "Section 1:", 
+        'id'            =>      'front_page_1',
+        'section'       =>      'home_page_sections',
+        'priority'      =>      '1',
+    ));
+    $wp_customize->add_control('front_page_2', array(
+        'manager'       =>      $wp_customize,
+        'type'          =>      'dropdown-pages',
+        'description'   =>      "Section 2:", 
+        'id'            =>      'front_page_2',
+        'section'       =>      'home_page_sections',
+        'priority'      =>      '2',
+    ));
+    $wp_customize->add_control('front_page_3', array(
+        'manager'       =>      $wp_customize,
+        'type'          =>      'dropdown-pages',
+        'description'   =>      "Section 3:", 
+        'id'            =>      'front_page_3',
+        'section'       =>      'home_page_sections',
+        'priority'      =>      '3',
+    ));
+    $wp_customize->add_control('front_page_4', array(
+        'manager'       =>      $wp_customize,
+        'type'          =>      'dropdown-pages',
+        'description'   =>      "Section 4:", 
+        'id'            =>      'front_page_4',
+        'section'       =>      'home_page_sections',
+        'priority'      =>      '4',
+    ));
+    $wp_customize->add_control('front_page_5', array(
+        'manager'       =>      $wp_customize,
+        'type'          =>      'dropdown-pages',
+        'description'   =>      "Section 5:", 
+        'id'            =>      'front_page_5',
+        'section'       =>      'home_page_sections',
+        'priority'      =>      '5',
+    ));
+
+    //TODO: figure out how to dynamically add a new home page section beyond these five.
 }
+add_action('customize_register','lmhcustom_customizer_setup');
 
 
 //enqueue needed styles and scripts
