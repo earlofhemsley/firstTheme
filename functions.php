@@ -37,58 +37,34 @@ function lmhcustom_customizer_setup($wp_customize){
         'description'   =>      "Set the pages you want to appear on the home page. Leave blank for no page to be assigned",
         'priority'      =>      30,
     ));
-
-    $wp_customize->add_setting('front_page_1');
-    $wp_customize->add_setting('front_page_2');
-    $wp_customize->add_setting('front_page_3');
-    $wp_customize->add_setting('front_page_4');
-    $wp_customize->add_setting('front_page_5');
-
-    $wp_customize->add_control('front_page_1', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'dropdown-pages',
-        'description'   =>      "Section 1:", 
-        'id'            =>      'front_page_1',
-        'section'       =>      'home_page_sections',
-        'priority'      =>      '1',
-    ));
-    $wp_customize->add_control('front_page_2', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'dropdown-pages',
-        'description'   =>      "Section 2:", 
-        'id'            =>      'front_page_2',
-        'section'       =>      'home_page_sections',
-        'priority'      =>      '2',
-    ));
-    $wp_customize->add_control('front_page_3', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'dropdown-pages',
-        'description'   =>      "Section 3:", 
-        'id'            =>      'front_page_3',
-        'section'       =>      'home_page_sections',
-        'priority'      =>      '3',
-    ));
-    $wp_customize->add_control('front_page_4', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'dropdown-pages',
-        'description'   =>      "Section 4:", 
-        'id'            =>      'front_page_4',
-        'section'       =>      'home_page_sections',
-        'priority'      =>      '4',
-    ));
-    $wp_customize->add_control('front_page_5', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'dropdown-pages',
-        'description'   =>      "Section 5:", 
-        'id'            =>      'front_page_5',
-        'section'       =>      'home_page_sections',
-        'priority'      =>      '5',
-    ));
+    
+    for($i = 1; $i<=5; $i++){
+        $wp_customize->add_setting('front_page_'.$i);
+        $wp_customize->add_control('front_page_'.$i, array(
+            'manager'       =>      $wp_customize,
+            'type'          =>      'dropdown-pages',
+            'description'   =>      "Section $i:", 
+            'id'            =>      'front_page_'.$i,
+            'section'       =>      'home_page_sections',
+            'priority'      =>      $i,
+        ));
+    }
 
     //TODO: figure out how to dynamically add a new home page section beyond these five.
 }
 add_action('customize_register','lmhcustom_customizer_setup');
 
+function get_home_section_query(){
+    for($i = 1; $i<=5; $i++){
+        $ids[] = get_theme_mod("front_page_$i");
+    }
+    $query = new WP_Query(array(
+        'post_type' => 'page',
+        'post__in' => $ids,
+        'orderby' => 'post__in',
+    ));
+    return $query;
+}
 
 //enqueue needed styles and scripts
 function lmhcustom_scripts_styles(){

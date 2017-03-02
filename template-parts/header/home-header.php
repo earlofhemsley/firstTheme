@@ -4,15 +4,20 @@
             <div class="text-center slightly-padded"><?php the_custom_logo(); ?></div>
             <h1 class="text-center slightly-padded"><?php bloginfo("name"); ?></h1>
             <h2 class="text-center slightly-padded"><?php bloginfo("description"); ?></h2>
-		</div>
-        <?php 
-            //echo get_theme_mod('front_page_1');
-            wp_nav_menu( array( 
-                'theme_location' => 'root',
-                'menu_class' => '',
-                'container' => 'div',
-                'container_class' => 'lmh-home-root-menu-container',
-                'container_id' => ''
-            )); 
-        ?>
+        </div>
+        <div class="lmh-home-root-menu-container">
+            <ul>
+            <?php 
+                $query = get_home_section_query();
+                while($query->have_posts()){
+                    $query->the_post();
+                    echo sprintf("<li class='menu-item'><a class='section-link section-%d'>%s</a></li>",
+                        get_the_ID(),
+                        get_the_title()
+                    );
+                }
+                echo "<li class='menu-item'><a class='section-link section-blog'>Blog</a></li>";
+            ?>
+            </ul>
+        </div>
 	</div>
