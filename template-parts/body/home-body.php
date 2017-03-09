@@ -12,14 +12,20 @@
     //TODO: widget area for custom social menu
     
     $query = get_home_section_query();
+    $counter = 0;
     while($query->have_posts()):
         $query->the_post();
+    
+        if($counter == 0 && is_active_sidebar('home-page-widget-1')){
+            dynamic_sidebar('home-page-widget-1');
+        }
 ?>
     <div class="home-separated">
         <h2><?php the_title(); ?></h2>
         <div><?php the_content(); ?></div>
     </div>
 <?php
+        $counter++;
     endwhile;
     //TODO: pull in the standard blog loop
 ?>

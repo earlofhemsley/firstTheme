@@ -54,6 +54,17 @@ function lmhcustom_customizer_setup($wp_customize){
 }
 add_action('customize_register','lmhcustom_customizer_setup');
 
+function lmhcustom_widget_setup(){
+    register_sidebar( array( 
+        'name' => 'Homepage Social Links Area',
+        'id' => 'home-page-widget-1',
+        'description' => 'This widget area is the first thing a user will see after beginning to scroll down the home page. The theme is designed such that this be used for social links.',
+        'before_widget' => '<div>',
+        'after_widget' => '</div>',
+    ));
+}
+add_action('widgets_init', 'lmhcustom_widget_setup');
+
 function get_home_section_query(){
     for($i = 1; $i<=5; $i++){
         $ids[] = get_theme_mod("front_page_$i");
