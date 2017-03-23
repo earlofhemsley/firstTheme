@@ -52,80 +52,6 @@ function lmhcustom_customizer_setup($wp_customize){
 
     //social media settings that puts links / images in specific places in the theme
 
-    $wp_customize->add_section('social_links_section', array(
-        'title'         =>      'Social Links',
-        'description'   =>      'Define destinations for the social media profiles (and one email address) you want on your website. Leave blank for no link to appear.',
-        'priority'      =>      35
-    ));
-
-    $wp_customize->add_setting('facebook');
-    $wp_customize->add_setting('twitter');
-    $wp_customize->add_setting('linkedin');
-    $wp_customize->add_setting('instagram');
-    $wp_customize->add_setting('pinterest');
-    $wp_customize->add_setting('email');
-
-    $wp_customize->add_control('facebook', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'url',
-        'id'            =>      'facebook',
-        'label'         =>      'Facebook',
-        'priority'      =>      1,
-        'description'   =>      'This is the URL to your Facebook profile.',
-        'section'       =>      'social_links_section'
-    ));
-
-    $wp_customize->add_control('twitter', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'url',
-        'id'            =>      'twitter',
-        'label'         =>      'Twitter',
-        'priority'      =>      2,
-        'description'   =>      'This is the URL to your Twitter profile.',
-        'section'       =>      'social_links_section'
-    ));
-
-    $wp_customize->add_control('linkedin', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'url',
-        'id'            =>      'linkedin',
-        'label'         =>      'LinkedIn',
-        'priority'      =>      3,
-        'description'   =>      'This is the URL to your LinkedIn profile.',
-        'section'       =>      'social_links_section'
-    ));
-
-    $wp_customize->add_control('instagram', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'url',
-        'id'            =>      'instagram',
-        'label'         =>      'Instagram',
-        'priority'      =>      4,
-        'description'   =>      'This is the URL to your Instagram profile.',
-        'section'       =>      'social_links_section'
-    ));
-    
-    $wp_customize->add_control('pinterest', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'url',
-        'id'            =>      'pinterest',
-        'label'         =>      'Pinterest',
-        'priority'      =>      5,
-        'description'   =>      'This is the URL to your Pinterest profile.',
-        'section'       =>      'social_links_section'
-    ));
-
-    $wp_customize->add_control('email', array(
-        'manager'       =>      $wp_customize,
-        'type'          =>      'email',
-        'id'            =>      'email',
-        'label'         =>      'Email',
-        'priority'      =>      6,
-        'description'   =>      'This is your email address.',
-        'section'       =>      'social_links_section'
-    ));
-    //TODO: Validation on URL inputs. 
-
     //TODO: figure out how to dynamically add a new home page section beyond these five.
 }
 add_action('customize_register','lmhcustom_customizer_setup');
@@ -154,18 +80,6 @@ function get_home_section_query(){
     return $query;
 }
 
-function get_social_links_array(){
-    $retval = array(
-        'facebook'      => get_theme_mod('facebook'),
-        'twitter'       => get_theme_mod('twitter'),
-        'linkedin'      => get_theme_mod('linkedin'),
-        'instagram'     => get_theme_mod('instagram'),
-        'pinterest'     => get_theme_mod('pinterest'),
-        'email'         => get_theme_mod('email')
-    );
-
-    return array_filter($retval);
-}
 
 //enqueue needed styles and scripts
 function lmhcustom_scripts_styles(){

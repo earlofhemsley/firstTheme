@@ -22,18 +22,9 @@
         <div><?php the_content(); ?></div>
 <?php
         if($counter == 0){
-            $social = get_social_links_array();
-            
-            echo '<div class="home-padded">';
-            if(!empty($social)){
-                echo '<div class="social-links text-center"><ul class="image-list">';
-                foreach($social as $name => $url){
-                    $image_path = get_template_directory_uri() . '/assets/img/'.$name.'.png';
-                    echo "<li><a href='$url' target='_blank'><img src='$image_path' alt='$name'/></a></li>";
-                }
-                echo '</ul></div>';
+            if( is_active_sidebar('home-page-widget-1')){
+                dynamic_sidebar('home-page-widget-1');
             }
-            echo '</div>';
         }
 
 ?>
@@ -41,9 +32,6 @@
 <?php
         $counter++;
     endwhile;
-        if( is_active_sidebar('home-page-widget-1')){
-            dynamic_sidebar('home-page-widget-1');
-        }
     //TODO: pull in the standard blog loop
 ?>
 <div class=""></div>
