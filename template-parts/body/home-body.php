@@ -13,7 +13,7 @@
 
 
     $query = get_home_section_query();
-    $counter = 0;
+    $counter = 1;
     while($query->have_posts()):
         $query->the_post();
 ?>
@@ -21,12 +21,9 @@
         <h2><?php the_title(); ?></h2>
         <div><?php the_content(); ?></div>
 <?php
-        if($counter == 0){
-            if( is_active_sidebar('home-page-widget-1')){
-                dynamic_sidebar('home-page-widget-1');
-            }
+        if( is_active_sidebar('front-page-widget-'.$counter)){
+            dynamic_sidebar('front-page-widget-'.$counter);
         }
-
 ?>
     </div>
 <?php

@@ -48,6 +48,15 @@ function lmhcustom_customizer_setup($wp_customize){
             'section'       =>      'home_page_sections',
             'priority'      =>      $i,
         ));
+        $wp_customize->add_setting('front_page_widget_enable_'.$i);
+        $wp_customize->add_control('front_page_widget_enable_'.$i, array(
+            'label'         =>      "Enable Section $i widget area",
+            'description'   =>      "If enabled, a widget area will appear within Section $i",
+            'section'       =>      'home_page_sections',
+            'priority'      =>      $i,
+            'type'          =>      'checkbox',
+        ));
+        //TODO: Checkbox to enable widget areas, by section...
     }
 
     //social media settings that puts links / images in specific places in the theme
@@ -57,14 +66,17 @@ function lmhcustom_customizer_setup($wp_customize){
 add_action('customize_register','lmhcustom_customizer_setup');
 
 function lmhcustom_widget_setup(){
-    //TODO: Write a plugin that puts the desired social media links where I want them, and then publish it
-    register_sidebar( array( 
-        'name' => 'Homepage Social Links Area',
-        'id' => 'home-page-widget-1',
-        'description' => 'This widget area is the first thing a user will see after beginning to scroll down the home page. The theme is designed such that this be used for social links.',
-        'before_widget' => '<div>',
-        'after_widget' => '</div>',
-    ));
+    for($i = 1; $i <= 5; $i++){
+        if(get_theme_mod('front_page_widget_enable_'.$i)){
+            register_sidebar( array( 
+                'name' => 'Front Page Widget Area for Section '.$i,
+                'id' => 'front-page-widget-'.$i,
+                'description' => 'This widget area corresponds with front page section '.$i,
+                'before_widget' => '<div>',
+                'after_widget' => '</div>',
+            ));
+        }
+    }
 }
 add_action('widgets_init', 'lmhcustom_widget_setup');
 
