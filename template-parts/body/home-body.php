@@ -13,7 +13,6 @@
 
 
     $query = get_home_section_query();
-    $counter = 1;
     while($query->have_posts()):
         $query->the_post();
 ?>
@@ -21,13 +20,19 @@
         <h2><?php the_title(); ?></h2>
         <div><?php the_content(); ?></div>
 <?php
-        if( is_active_sidebar('front-page-widget-'.$counter)){
-            dynamic_sidebar('front-page-widget-'.$counter);
+        for($i = 1; $i <= 5; $i++)
+        {
+            $pageid = get_theme_mod('front_page_'.$i);
+            if($pageid == get_the_ID()){
+                if( is_active_sidebar('front-page-widget-'.$i)){
+                    dynamic_sidebar('front-page-widget-'.$i);
+                }
+                break;
+            }
         }
 ?>
     </div>
 <?php
-        $counter++;
     endwhile;
     //TODO: pull in the standard blog loop
 ?>
