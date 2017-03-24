@@ -11,12 +11,12 @@
                 $query = get_home_section_query();
                 while($query->have_posts()){
                     $query->the_post();
-                    echo sprintf("<li class='menu-item'><a class='section-link section-%d'>%s</a></li>",
+                    echo sprintf("<li class='menu-item'><a class='section-link' onclick=\"scrollTo('#front-page-section-%d');\">%s</a></li>",
                         get_the_ID(),
                         get_the_title()
                     );
                 }
-                echo "<li class='menu-item'><a class='section-link section-blog'>Blog</a></li>";
+                echo "<li class='menu-item'><a class='section-link' onclick=\"scrollTo('#blogroll')\">Blog</a></li>";
             ?>
             </ul>
         </div>

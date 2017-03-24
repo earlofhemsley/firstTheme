@@ -1,3 +1,10 @@
+var scrollTo = function(selector){
+    $('html,body').animate(
+        {scrollTop : $(selector).offset().top},
+        '1000'    
+    );
+}
+
 var resize = function(){
     var sections = document.getElementsByClassName("home-section");
     for(var i = 0; i<sections.length; i++){

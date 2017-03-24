@@ -16,7 +16,7 @@
     while($query->have_posts()):
         $query->the_post();
 ?>
-    <div class="home-separated home-padded text-center">
+    <div class="home-separated home-padded text-center" id="<?php echo 'front-page-section-'.get_the_ID(); ?>">
         <h2><?php the_title(); ?></h2>
         <div><?php the_content(); ?></div>
 <?php
@@ -39,7 +39,7 @@
             'post_type' =>  'post'
         ));
 ?>
-    <div class="home-padded text-center">
+    <div class="home-padded text-center" id="blogroll">
         <h2>Blog</h2>
 <?php
         if($standard->have_posts()){
