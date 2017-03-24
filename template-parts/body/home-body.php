@@ -35,5 +35,25 @@
 <?php
     endwhile;
     //TODO: pull in the standard blog loop
+        $standard = new WP_Query(array(
+            'post_type' =>  'post'
+        ));
 ?>
+    <div class="home-padded text-center">
+        <h2>Blog</h2>
+<?php
+        if($standard->have_posts()):
+            while($standard->have_posts()):
+                $standard->the_post();
+                $url = get_permalink();
+                $title = get_the_title();
+                $date = get_the_date();
+                echo "<a href='$url'><h3>$title</h3></a>";
+                echo "<p>$date</p>";
+            endwhile;
+        else:
+            echo "<h3>Nothing here yet. Check back soon!</h3>";
+        endif;
+?>
+    </div>
 <div class=""></div>
