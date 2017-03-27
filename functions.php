@@ -31,10 +31,12 @@ function lmhcustom_customizer_setup($wp_customize){
         Controls: front page parts 1-5
         Sections: Front page customization 
      */ 
+    $wp_customize->remove_panel('widgets');
+    $wp_customize->remove_section('static_front_page');
     
     $wp_customize->add_section('home_page_sections', array(
         'title'         =>      "Front page customization",
-        'description'   =>      "Set the pages you want to appear on the home page. Leave blank for no page to be assigned",
+        'description'   =>      "Set the pages you want to appear on the home page, and activate home page widget areas. Leave blank for no page to be assigned. Check <a href='".get_admin_url()."widgets.php'>the widgets panel</a> to adjust widgets after saving.",
         'priority'      =>      30,
     ));
     
@@ -51,15 +53,12 @@ function lmhcustom_customizer_setup($wp_customize){
         $wp_customize->add_setting('front_page_widget_enable_'.$i);
         $wp_customize->add_control('front_page_widget_enable_'.$i, array(
             'label'         =>      "Enable Section $i widget area",
-            'description'   =>      "If enabled, a widget area will appear within Section $i",
+            'description'   =>      "If enabled, a widget area will appear within Section $i.",
             'section'       =>      'home_page_sections',
             'priority'      =>      $i,
             'type'          =>      'checkbox',
         ));
-        //TODO: Checkbox to enable widget areas, by section...
     }
-
-    //social media settings that puts links / images in specific places in the theme
 
     //TODO: figure out how to dynamically add a new home page section beyond these five.
 }
