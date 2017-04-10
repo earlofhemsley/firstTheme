@@ -6,7 +6,7 @@ function lmhcustom_setup(){
     //add_image_size('root-logo-image', 150, 150);
     
 	// Add theme support for Post Formats
-	add_theme_support( 'post-formats', array( 'status', 'gallery', 'image', 'aside' ) );
+	add_theme_support( 'post-formats', array( 'status', 'gallery', 'image', 'link', 'video' ) );
 
 	// Add theme support for HTML5 Semantic Markup
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
@@ -18,6 +18,8 @@ function lmhcustom_setup(){
         'width'=> 150,
         'height' => 150,
     ));
+
+    add_theme_support('post-thumbnails');
 }
 add_action('after_setup_theme', 'lmhcustom_setup');
 
