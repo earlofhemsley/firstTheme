@@ -22,10 +22,6 @@ var resize = function(){
 
 $(document).ready(function(){
     resize();
-    var wrapper = $("#wrapper:hidden");
-    if(wrapper != null){
-        wrapper.delay(200).fadeIn();
-    }
 
     $('.lmhcustom-nav-toggle').on('click', function(){
         if($(this).children(':first-child').html() == "Show Menu"){
@@ -40,4 +36,11 @@ $(document).ready(function(){
     window.onresize = resize;
 
 
+});
+
+$(window).load(function(){
+    var mask = $("#home-header-mask:hidden");
+    if(mask != null){
+        mask.delay(200).fadeIn();
+    }
 });
