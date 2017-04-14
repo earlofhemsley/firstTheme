@@ -1,10 +1,3 @@
-var scrollTo = function(selector){
-    $('html,body').animate(
-        {scrollTop : $(selector).offset().top},
-        '1000'    
-    );
-}
-
 var resize = function(){
     var sections = document.getElementsByClassName("home-section");
     for(var i = 0; i<sections.length; i++){
@@ -35,6 +28,13 @@ $(document).ready(function(){
     
     window.onresize = resize;
 
+    $('a.scrollable').on('click',function(){
+        var selector = $(this).data('destination');
+        $('html,body').animate(
+            {scrollTop : $(selector).offset().top},
+            '1000'    
+        );
+    });
 
 });
 
@@ -43,4 +43,5 @@ $(window).load(function(){
     if(mask != null){
         mask.delay(200).fadeIn();
     }
+
 });
