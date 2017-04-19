@@ -18,6 +18,7 @@
 ?>
     <div class="home-separated home-padded text-center" id="<?php echo 'front-page-section-'.get_the_ID(); ?>">
         <h2><?php the_title(); ?></h2>
+        <?php if(has_excerpt(get_the_ID())) echo "<h4>".get_the_excerpt()."</h4>"; ?>
         <div><?php the_content(); ?></div>
 <?php
         for($i = 1; $i <= 5; $i++)
@@ -45,7 +46,7 @@
         if($standard->have_posts()){
             while($standard->have_posts()){
                 $standard->the_post();
-                echo sprintf("<a href='%s'><h3>%s</h3></a><p>%s</p>",
+                echo sprintf("<h3><a href='%s'>%s</a></h3><p>%s</p>",
                     get_permalink(),
                     get_the_title(),
                     get_the_date()

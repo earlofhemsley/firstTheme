@@ -15,6 +15,11 @@ var resize = function(){
 
 $(document).ready(function(){
     resize();
+    var mask = $("#home-header-mask:hidden");
+    if(mask != null){
+        mask.delay(200).fadeIn();
+    }
+
 
     $('.lmhcustom-nav-toggle').on('click', function(){
         if($(this).children(':first-child').html() == "Show Menu"){
@@ -35,13 +40,5 @@ $(document).ready(function(){
             '1000'    
         );
     });
-
-});
-
-$(window).load(function(){
-    var mask = $("#home-header-mask:hidden");
-    if(mask != null){
-        mask.delay(200).fadeIn();
-    }
 
 });

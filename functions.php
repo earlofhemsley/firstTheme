@@ -5,6 +5,7 @@ if(!isset($content_width)) $content_width = 1200;
 function lmhcustom_setup(){
     //add_image_size('root-logo-image', 150, 150);
     
+    add_theme_support('post-thumbnails');
 	// Add theme support for Post Formats
 	add_theme_support( 'post-formats', array( 'status', 'gallery', 'image', 'link', 'video' ) );
 
@@ -19,7 +20,8 @@ function lmhcustom_setup(){
         'height' => 150,
     ));
 
-    add_theme_support('post-thumbnails');
+    add_post_type_support('post', array('excerpt','title','author','custom-fields','comments','post-formats','revisions'));
+    add_post_type_support('page', array('excerpt','title','author','custom-fields','comments','post-formats','revisions'));
 }
 add_action('after_setup_theme', 'lmhcustom_setup');
 

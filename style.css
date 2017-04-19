@@ -115,27 +115,6 @@ nav.nav{
     text-decoration:underline;
 }
 
-/********************
- * Social menu styles
- * *****************
-.social-links {
-    margin: auto;
-    width:100%;
-    max-width:500px;
-}
-
-ul.image-list li{
-    display:inline;
-    padding:0 10px;
-    margin: 0 10px;
-}
-
-ul.image-list img{
-    width: 50px;
-    border-radius: 5px;
-}
-*/
-
 /*********************
  * GENERAL STYLES
  * ******************/
@@ -144,6 +123,13 @@ ul.image-list img{
     padding:5px;
 }
 
+p{
+    margin: 5px 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 10px 0 5px;
+}
 
 
 /*********************
