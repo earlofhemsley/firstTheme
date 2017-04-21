@@ -80,6 +80,14 @@ function lmhcustom_widget_setup(){
             ));
         }
     }
+
+    register_sidebar(array(
+        'name' => 'Primary Sidebar Widget Area',
+        'id' => 'lmh-primary',
+        'description' => 'Appears at the bottom of the home page and in the right rail of post pages. Ideal for WP Meta.',
+        'before_widget' => '',
+        'after_widget' => '',
+    ));
 }
 add_action('widgets_init', 'lmhcustom_widget_setup');
 

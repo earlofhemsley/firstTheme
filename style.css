@@ -69,6 +69,22 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     text-decoration: underline;
 }
 
+.lmh-home-page-section-content p{
+    margin: 20px auto;
+}
+
+.lmh-home-sidebar{
+    width:100%;
+    max-width:800px;
+    margin: auto;
+    text-align:center;
+}
+
+.lmh-home-sidebar-cell > ul{
+    list-style-type:none;
+}
+
+
 /********************
  * Navigation
  * *****************/
@@ -124,13 +140,21 @@ nav.nav{
 }
 
 p{
-    margin: 5px 0;
+    margin: 10px 0 5px;
 }
 
 h1,h2,h3,h4,h5,h6{
     margin: 10px 0 5px;
 }
 
+.no-margin{
+    margin:0;
+}
+
+.copyright-text{
+    color: #dedede;
+    font-size: 12px;
+}
 
 /*********************
  * MEDIA QUERIES

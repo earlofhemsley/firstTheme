@@ -1,5 +1,5 @@
 	<div id="footer">
-        <h1>FOOTER</h1>
+        <p class="copyright-text text-center">Copyright &copy; <?php echo date("Y"); ?></p>
 	</div>
 </div>
 	<!-- <script>
