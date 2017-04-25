@@ -131,6 +131,22 @@ nav.nav{
     text-decoration:underline;
 }
 
+
+/*********************
+ * SINGLE POST STYLES
+ * ******************/
+.single-body .single-image img{
+    width: 100%;    
+}
+
+.single-body .single-content {
+    overflow:hidden;
+}
+
+
+.single-sidebar{}
+
+
 /*********************
  * GENERAL STYLES
  * ******************/

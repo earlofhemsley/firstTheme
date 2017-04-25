@@ -4,6 +4,7 @@ if(!isset($content_width)) $content_width = 1200;
 
 function lmhcustom_setup(){
     //add_image_size('root-logo-image', 150, 150);
+    add_image_size('post-hero', 1000, 563, array('center','top'));
     
     add_theme_support('post-thumbnails');
 	// Add theme support for Post Formats
