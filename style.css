@@ -23,9 +23,9 @@
  * *****************/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
 {
-  margin:0;
-  padding:0;
-  font-family: "seravek", "helvetica", "arial", sans-serif;
+    margin:0;
+    padding:0;
+    font-family: "seravek", "helvetica", "arial", sans-serif;
 }
 
 .home-separated{
@@ -131,22 +131,6 @@ nav.nav{
     text-decoration:underline;
 }
 
-
-/*********************
- * SINGLE POST STYLES
- * ******************/
-.single-body .single-image img{
-    width: 100%;    
-}
-
-.single-body .single-content {
-    overflow:hidden;
-}
-
-
-.single-sidebar{}
-
-
 /*********************
  * GENERAL STYLES
  * ******************/
@@ -173,11 +157,76 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /*********************
+ * SINGLE POST STYLES
+ * ******************/
+
+.single-body .single-image{
+    width: 95%;
+    margin: auto; 
+}
+
+.single-body .single-image img{
+    width:100%;   
+}
+
+.single-body .single-content {
+    overflow:hidden;
+}
+
+.single-sidebar{}
+
+
+.single-content{
+    padding: 0 10px;
+}
+
+.single-content blockquote{
+    padding-left: 30px;
+    clear: left;
+}
+
+.single-content ol, .single-content ul{
+    padding-left:30px;
+}
+
+.single-content img{
+    margin: 20px 0;
+}
+
+.single-content img.aligncenter{
+    max-width:700px;
+    width:95%;
+    margin: 20px auto;
+    display:block;
+    
+}
+
+
+
+/*********************
  * MEDIA QUERIES
  * ******************/
 
+/* xs screens only */
+@media (max-width:767px){
+    .single-content img{
+        width:100%;
+        height: auto !important;
+    }
+}
+
 /* sm screens and larger */
 @media (min-width: 768px){
+
+    .single-content img.alignleft{
+        float:left;
+        margin: 0 20px 15px 0;
+    }
+
+    .single-content img.alignright{
+        float:right;
+        margin:0 0 20px 20px;
+    }
 
     .lmhcustom-nav-toggle{
         display:none;   
@@ -195,14 +244,3 @@ h1,h2,h3,h4,h5,h6{
 /* lg screens and larger */
 @media (min-width: 1200px){
 }
-
-
-/*
-#wrapper { display: block; border: 1px #a2a2a2 solid; width:90%; margin:0px auto; }
-#header { border: 2px #a2a2a2 solid; }
-#content { width: 75%; border: 2px #a2a2a2 solid; float: left; }
-#sidebar { width: 23%; border: 2px #a2a2a2 solid; float: right; }
-#delimiter { clear: both; }
-#footer { border: 2px #a2a2a2 solid; }
-.title { font-size: 11pt; font-family: verdana; font-weight: bold; }
-*/
