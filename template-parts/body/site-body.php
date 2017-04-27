@@ -16,6 +16,18 @@
     <div class="single-content"><?php the_content(); ?></div>
 
 <?php
+        if(get_post_type() == 'page'){
+            for($i = 1; $i <= 5; $i++)
+            {
+                $pageid = get_theme_mod('front_page_'.$i);
+                if($pageid == get_the_ID()){
+                    if( is_active_sidebar('front-page-widget-'.$i)){
+                        dynamic_sidebar('front-page-widget-'.$i);
+                    }
+                    break;
+                }
+            }
+        }
         endwhile; 
     else:
 ?>
