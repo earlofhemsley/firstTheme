@@ -173,8 +173,13 @@ h1,h2,h3,h4,h5,h6{
     overflow:hidden;
 }
 
-.single-sidebar{}
+.site-sidebar-section{
+    margin: 20px 0 15px;
+}
 
+.site-sidebar-section > ul{
+    margin-left:20px;
+}
 
 .single-content{
     padding: 0 10px;

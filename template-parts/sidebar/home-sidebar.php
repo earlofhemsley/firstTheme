@@ -13,8 +13,8 @@
     </div>
     <div class="col-sm-4 lmh-home-sidebar-cell">
         <?php 
-            if(is_active_sidebar('lmh-primary')){
-                dynamic_sidebar('lmh-primary');
+            if(is_active_sidebar('lmh-home-page')){
+                dynamic_sidebar('lmh-home-page');
             } 
         ?>
     </div>

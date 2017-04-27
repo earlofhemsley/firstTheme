@@ -83,9 +83,30 @@ function lmhcustom_widget_setup(){
     }
 
     register_sidebar(array(
+        'name' => 'Home Page Widget Area',
+        'id' => 'lmh-home-page',
+        'description' => 'Appears at the bottom of the home page.',
+        'before_widget' => '',
+        'after_widget' => '',
+    ));
+    register_sidebar(array(
         'name' => 'Primary Sidebar Widget Area',
         'id' => 'lmh-primary',
-        'description' => 'Appears at the bottom of the home page and in the right rail of post pages. Ideal for WP Meta.',
+        'description' => 'Appears in the right rail of post pages.',
+        'before_widget' => '',
+        'after_widget' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'Secondary Sidebar Widget Area',
+        'id' => 'lmh-secondary',
+        'description' => 'Appears in the right rail of post pages.',
+        'before_widget' => '',
+        'after_widget' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'Tertiary Sidebar Widget Area',
+        'id' => 'lmh-tertiary',
+        'description' => 'Appears in the right rail of post pages.',
         'before_widget' => '',
         'after_widget' => '',
     ));
