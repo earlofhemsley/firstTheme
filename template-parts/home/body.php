@@ -35,7 +35,8 @@
     endwhile;
     //TODO: pull in the standard blog loop
         $standard = new WP_Query(array(
-            'post_type' =>  'post'
+            'post_type' =>  'post',
+            'post_status' => 'publish'
         ));
 ?>
     <div class="home-padded text-center" id="blogroll">

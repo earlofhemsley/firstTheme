@@ -160,13 +160,29 @@ h1,h2,h3,h4,h5,h6{
  * SINGLE POST STYLES
  * ******************/
 
-.single-body .single-image{
+.single-body h1.entry-title{
+    margin-left:10px;
+}
+
+.single-meta{
+    color: #9f9f9f;
+    font-style: italic;
+    margin: 0 0 10px 20px;
+}
+
+.single-body .single-featured-image{
     width: 95%;
     margin: auto; 
 }
 
-.single-body .single-image img{
+.single-body .single-featured-image img{
     width:100%;   
+}
+
+.single-body .single-featured-image figcaption{
+    background: #dfdfdf;
+    font-style: italic;
+    padding: 5px 10px;
 }
 
 .single-body .single-content {
