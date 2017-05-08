@@ -24,8 +24,8 @@
         get_the_date('M d, Y'),
         $editLink
     );
-?>
-<?php
+    if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');
+
     if(has_post_thumbnail(get_the_ID()) && is_single()):
 ?>            
         <figure class="single-featured-image">
@@ -39,8 +39,7 @@
     endif;
     echo sprintf('<div class="%s">%s</div>',
         is_single() ? "single-content" : "multiple-content",
-            is_single() ? apply_filters('the_content', get_the_content()) : get_the_excerpt()
+        is_single() ? apply_filters('the_content', get_the_content()) : get_the_excerpt()
     );
-            
 ?>
 </article>

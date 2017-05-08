@@ -110,6 +110,13 @@ function lmhcustom_widget_setup(){
         'before_widget' => '',
         'after_widget' => '',
     ));
+    register_sidebar(array(
+        'name' => 'Post & Page',
+        'id' => 'lmh-single',
+        'description' => 'Appears on single posts and pages',
+        'before_widget' => '',
+        'after_widget' => '',
+    ));
 }
 add_action('widgets_init', 'lmhcustom_widget_setup');
 

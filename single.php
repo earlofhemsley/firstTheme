@@ -7,7 +7,7 @@ get_header();
     if ( have_posts() ) { 
         while ( have_posts() ) {
             the_post();
-            get_template_part('template-parts/single/content', get_post_type(get_the_ID()));
+            get_template_part('template-parts/single/content', get_post_format(get_the_ID()));
         }
     }
 ?>

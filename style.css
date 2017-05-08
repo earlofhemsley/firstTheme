@@ -222,6 +222,16 @@ h1,h2,h3,h4,h5,h6{
     
 }
 
+/*********************
+ * SPECIAL POST FORMAT STYLES
+ * ******************/
+.format-status{
+    margin: 20px 0;
+}
+
+.format-status * {
+    font-size:25px;
+}
 
 
 /*********************
