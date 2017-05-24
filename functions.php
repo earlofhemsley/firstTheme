@@ -8,7 +8,7 @@ function lmhcustom_setup(){
     
     add_theme_support('post-thumbnails');
 	// Add theme support for Post Formats
-	add_theme_support( 'post-formats', array( 'status', 'gallery', 'image', 'link', 'video' ) );
+	add_theme_support( 'post-formats', array( 'status', 'image', 'link', 'video' ) );
 
 	// Add theme support for HTML5 Semantic Markup
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
@@ -120,19 +120,6 @@ function lmhcustom_widget_setup(){
 }
 add_action('widgets_init', 'lmhcustom_widget_setup');
 
-function get_home_section_query(){
-    for($i = 1; $i<=5; $i++){
-        $ids[] = get_theme_mod("front_page_$i");
-    }
-    $query = new WP_Query(array(
-        'post_type' => 'page',
-        'post__in' => $ids,
-        'orderby' => 'post__in',
-    ));
-    return $query;
-}
-
-
 //enqueue needed styles and scripts
 function lmhcustom_scripts_styles(){
     wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css');
@@ -159,5 +146,92 @@ function register_menus(){
 }
 add_action('init', 'register_menus');
 
+
+function get_home_section_query(){
+    for($i = 1; $i<=5; $i++){
+        $ids[] = get_theme_mod("front_page_$i");
+    }
+    $query = new WP_Query(array(
+        'post_type' => 'page',
+        'post__in' => $ids,
+        'orderby' => 'post__in',
+    ));
+    return $query;
+}
+
+function lmhcustom_gallery_shortcode($output = '', $atts, $instance){
+    $return = $output; //as a fallback
+
+    //documentation on the gallery shortcode ==> 
+    //https://developer.wordpress.org/reference/functions/gallery_shortcode/
+    /* The needful:
+     * get all the specified ids
+     * get all the post objects
+     * frame / order them according to shortcode attributes
+     * remember to maintain the styling schema that has already been written
+     * make it so that when clicked, full-page image gallery actually pops up with captions
+     * that people can click through if they want.
+     */
+
+    $settings = shortcode_atts( array(
+        'order'      => 'ASC',
+        'orderby'    => 'menu_order ID',
+        'itemtag'    => 'figure',
+        'icontag'    => 'div',
+        'captiontag' => 'figcaption',
+        'columns'    => 3,
+        'size'       => 'thumbnail',
+        'include'    => '',
+        'exclude'    => '',
+        'link'       => ''
+    ), $atts, 'gallery' );
+
+    $attachments = array();
+    $query_vars = array(
+            'post_status' => 'inherit', 
+            'post_type' => 'attachment', 
+            'post_mime_type' => 'image', 
+            'order' => $settings['order'], 
+            'orderby' => $settings['orderby'],  
+    );
+
+    if ( ! empty( $settings['include'] ) ) {
+        $query_vars['include'] = $settings['include'];
+    } elseif ( ! empty( $settings['exclude'] ) ) {
+        $query_vars['exclude'] = $settings['exclude'];
+    }
+    $sortedIds = array_map( function($p){return $p->ID;}, get_posts($query_vars));
+
+    var_dump($sortedIds);
+
+
+    
+
+    $return = <<< EOT
+        <div class="gallery gallery-columns-{$settings['columns']} gallery-size-{$settings['size']}">
+EOT;
+    foreach($sortedIds as $id){
+        $image = wp_get_attachment_image_src($id);
+        print_r($image);
+        $html= <<< EOT
+            <{$settings['itemtag']} class="gallery-item">
+                <{$settings['icontag']} class="gallery-icon landscape">
+                    <a href="#">
+                        <img src="{$image[0]}" style="width:{$image[1]}px; height:{$image[2]}px;" />
+                    </a>
+                </{$settings['icontag']}>    
+            </{$settings['itemtag']}>
+EOT;
+
+    $return .= $html;
+
+    }
+    
+    $return .= "</div>";
+
+    return $return;
+}
+
+add_filter('post_gallery', 'lmhcustom_gallery_shortcode', 10, 3);
 
 ?>
