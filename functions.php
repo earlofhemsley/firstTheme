@@ -202,17 +202,11 @@ function lmhcustom_gallery_shortcode($output = '', $atts, $instance){
     }
     $sortedIds = array_map( function($p){return $p->ID;}, get_posts($query_vars));
 
-    var_dump($sortedIds);
-
-
-    
-
     $return = <<< EOT
         <div class="gallery gallery-columns-{$settings['columns']} gallery-size-{$settings['size']}">
 EOT;
     foreach($sortedIds as $id){
         $image = wp_get_attachment_image_src($id);
-        print_r($image);
         $html= <<< EOT
             <{$settings['itemtag']} class="gallery-item">
                 <{$settings['icontag']} class="gallery-icon landscape">
