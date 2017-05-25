@@ -136,6 +136,14 @@ function lmhcustom_scripts_styles(){
     wp_enqueue_script('modernizr', get_template_directory_uri().'/assets/js/vendor/modernizr-2.6.2.min.js', array('jquery'), null, true);
     wp_enqueue_script('main',get_template_directory_uri().'/assets/js/main.js', array('jquery'), null, true);
     wp_enqueue_script('plugins',get_template_directory_uri().'/assets/js/plugins.js', array('jquery'), null, true);
+
+    //photoswipe libraries
+    wp_register_script('photoswipe-core', get_template_directory_uri().'/assets/js/photoswipe.min.js');
+    wp_register_script('photoswipe-ui', get_template_directory_uri().'/assets/js/photoswipe-ui-default.min.js');
+    wp_register_script('photoswipe-render', get_template_directory_uri().'/assets/js/ps-render.js', array('jquery','photoswipe-core','photoswipe-ui'));
+    wp_register_style('photoswipe-css', get_template_directory_uri().'/assets/css/photoswipe.css');
+    wp_register_style('photoswipe-default-skin-css', get_template_directory_uri().'/assets/css/default-photoswipe-skin/default-skin.css');
+
 }
 add_action('wp_enqueue_scripts','lmhcustom_scripts_styles');
 
@@ -159,7 +167,82 @@ function get_home_section_query(){
     return $query;
 }
 
+function generate_photoswipe_html(){
+    return <<< EOT
+        <div class="pswp" id="photoswipe" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <!-- Background of PhotoSwipe. 
+                 It is a separate element as animating opacity is faster than rgba(). -->
+            <div class="pswp__bg"></div>
+
+            <!-- Slides wrapper with overflow:hidden. -->
+            <div class="pswp__scroll-wrap">
+
+                <!-- Container that holds slides. 
+                    PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                    Do not modify these 3 pswp__item elements, data is added later on. -->
+                <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+
+                    <div class="pswp__top-bar">
+
+                        <!--  Controls are self-explanatory. Order can be changed. -->
+
+                        <div class="pswp__counter"></div>
+
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                        <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                              <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                        <div class="pswp__share-tooltip"></div> 
+                    </div>
+
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                    </button>
+
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                    </button>
+
+                    <div class="pswp__caption">
+                        <div class="pswp__caption__center"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+EOT;
+}
+
 function lmhcustom_gallery_shortcode($output = '', $atts, $instance){
+    wp_enqueue_script('photoswipe-core');
+    wp_enqueue_script('photoswipe-ui');
+    wp_enqueue_script('photoswipe-render');
+    wp_enqueue_style('photoswipe-css');
+    wp_enqueue_style('photoswipe-default-skin-css');
     $return = $output; //as a fallback
 
     //documentation on the gallery shortcode ==> 
@@ -201,26 +284,41 @@ function lmhcustom_gallery_shortcode($output = '', $atts, $instance){
         $query_vars['exclude'] = $settings['exclude'];
     }
     $sortedIds = array_map( function($p){return $p->ID;}, get_posts($query_vars));
+    $return = generate_photoswipe_html();
+    $return .= <<< EOT
+        <script type="text/javascript">
+            var renderPhotoSwipe = function(){ 
+                var photos = [
+EOT;
+                foreach($sortedIds as $id){
+                    $image = wp_get_attachment_image_src($id, 'post-hero');
+                    $return .= "{src: '{$image[0]}', w: {$image[1]}, h: {$image[2]} },";
+                }
+        $return .= <<< EOT
+                ];
+                
+                var gallery = new PhotoSwipe($('#photoswipe')[0], PhotoSwipeUI_Default, photos, {});
+                gallery.init(); 
+            }
+        </script>
+EOT;
 
-    $return = <<< EOT
+    $return .= <<< EOT
         <div class="gallery gallery-columns-{$settings['columns']} gallery-size-{$settings['size']}">
 EOT;
     foreach($sortedIds as $id){
         $image = wp_get_attachment_image_src($id);
-        $html= <<< EOT
+        $return .= <<< EOT
             <{$settings['itemtag']} class="gallery-item">
                 <{$settings['icontag']} class="gallery-icon landscape">
-                    <a href="#">
+                    <a href="#" class="photoswipe-activate">
                         <img src="{$image[0]}" style="width:{$image[1]}px; height:{$image[2]}px;" />
                     </a>
                 </{$settings['icontag']}>    
             </{$settings['itemtag']}>
 EOT;
 
-    $return .= $html;
-
     }
-    
     $return .= "</div>";
 
     return $return;
