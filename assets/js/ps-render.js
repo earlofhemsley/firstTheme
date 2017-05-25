@@ -1,1 +1,1 @@
-$('.photoswipe-activate').on('click', renderPhotoSwipe());
+$('.photoswipe-activate').on('click', function(){renderPhotoSwipe();});
