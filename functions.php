@@ -167,27 +167,20 @@ function get_home_section_query(){
     return $query;
 }
 
-function generate_photoswipe_html(){
+function getPhotoSwipeFrame(){
     return <<< EOT
         <div class="pswp" id="photoswipe" tabindex="-1" role="dialog" aria-hidden="true">
 
-            <!-- Background of PhotoSwipe. 
-                 It is a separate element as animating opacity is faster than rgba(). -->
             <div class="pswp__bg"></div>
 
-            <!-- Slides wrapper with overflow:hidden. -->
             <div class="pswp__scroll-wrap">
 
-                <!-- Container that holds slides. 
-                    PhotoSwipe keeps only 3 of them in the DOM to save memory.
-                    Do not modify these 3 pswp__item elements, data is added later on. -->
                 <div class="pswp__container">
                     <div class="pswp__item"></div>
                     <div class="pswp__item"></div>
                     <div class="pswp__item"></div>
                 </div>
 
-                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
                 <div class="pswp__ui pswp__ui--hidden">
 
                     <div class="pswp__top-bar">
@@ -204,6 +197,7 @@ function generate_photoswipe_html(){
 
                         <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
+                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
                         <!-- element will get class pswp__preloader--active when preloader is running -->
                         <div class="pswp__preloader">
                             <div class="pswp__preloader__icn">
@@ -233,7 +227,6 @@ function generate_photoswipe_html(){
             </div>
 
         </div>
-
 EOT;
 }
 
@@ -284,36 +277,26 @@ function lmhcustom_gallery_shortcode($output = '', $atts, $instance){
         $query_vars['exclude'] = $settings['exclude'];
     }
     $sortedIds = array_map( function($p){return $p->ID;}, get_posts($query_vars));
-    $return = generate_photoswipe_html();
+    
+    
+    $return = getPhotoSwipeFrame();
+    $guid = uniqid();
     $return .= <<< EOT
-        <script type="text/javascript">
-            var renderPhotoSwipe = function(){ 
-                var photos = [
-EOT;
-                foreach($sortedIds as $id){
-                    $image = wp_get_attachment_image_src($id, 'post-hero');
-                    $return .= "{src: '{$image[0]}', w: {$image[1]}, h: {$image[2]} },";
-                }
-        $return .= <<< EOT
-                ];
-                
-                var gallery = new PhotoSwipe($('#photoswipe')[0], PhotoSwipeUI_Default, photos, {});
-                gallery.init(); 
-            }
-        </script>
-EOT;
-
-    $return .= <<< EOT
-        <div class="gallery gallery-columns-{$settings['columns']} gallery-size-{$settings['size']}">
+        <div data-guid="$guid" class="gallery gallery-columns-{$settings['columns']} gallery-size-{$settings['size']}">
 EOT;
     foreach($sortedIds as $id){
-        $image = wp_get_attachment_image_src($id);
+        $thumbnail = wp_get_attachment_image_src($id);
+        $fullSize = wp_get_attachment_image_src($id, $settings['size']);
+        $excerpt = apply_filters('the_excerpt', get_post_field('post_excerpt',$id));
         $return .= <<< EOT
             <{$settings['itemtag']} class="gallery-item">
                 <{$settings['icontag']} class="gallery-icon landscape">
-                    <a href="#" class="photoswipe-activate">
-                        <img src="{$image[0]}" style="width:{$image[1]}px; height:{$image[2]}px;" />
+                    <a href="#" class="photoswipe-activate" data-src="{$fullSize[0]}" data-size="{$fullSize[1]}x{$fullSize[2]}">
+                        <img src="{$thumbnail[0]}" style="width:{$thumbnail[1]}px; height:{$thumbnail[2]}px;" />
                     </a>
+                    <{$settings['captiontag']} class="gallery-caption">
+                        $excerpt
+                    </{$settings['captiontag']}>
                 </{$settings['icontag']}>    
             </{$settings['itemtag']}>
 EOT;
