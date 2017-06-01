@@ -9,7 +9,7 @@ function lmhcustom_setup(){
     
     add_theme_support('post-thumbnails');
 	// Add theme support for Post Formats
-	add_theme_support( 'post-formats', array( 'status', 'link'));
+	add_theme_support( 'post-formats', array( 'status', 'aside', 'link'));
 
 	// Add theme support for HTML5 Semantic Markup
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
