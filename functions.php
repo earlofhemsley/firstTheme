@@ -3,12 +3,13 @@
 if(!isset($content_width)) $content_width = 1200;
 
 function lmhcustom_setup(){
+
     //add_image_size('root-logo-image', 150, 150);
     add_image_size('post-hero', 1000, 563, array('center','top'));
     
     add_theme_support('post-thumbnails');
 	// Add theme support for Post Formats
-	add_theme_support( 'post-formats', array( 'status', 'image', 'link', 'video' ) );
+	add_theme_support( 'post-formats', array( 'status', 'link'));
 
 	// Add theme support for HTML5 Semantic Markup
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
@@ -306,7 +307,17 @@ EOT;
 
     return $return;
 }
-
 add_filter('post_gallery', 'lmhcustom_gallery_shortcode', 10, 3);
+
+function iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
+    //regex on html to see if there's an iframe
+    //if there's an iframe, wrap the html in a div such that it can be presented
+    //return it
+    if(1 == preg_match('/^<iframe.*/', $cachedHtml)){
+        $cachedHtml = '<div class="iframe-responsive">'.$cachedHtml.'</div>';
+    }
+    return $cachedHtml;
+}
+add_filter("embed_oembed_html", 'iframe_oembed_filter', 10, 4);
 
 ?>
