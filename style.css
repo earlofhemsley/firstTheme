@@ -156,6 +156,10 @@ h1,h2,h3,h4,h5,h6{
     font-size: 12px;
 }
 
+.side-padded{
+    padding: 0 15px;
+}
+
 /*********************
  * SINGLE POST STYLES
  * ******************/
@@ -221,6 +225,39 @@ h1,h2,h3,h4,h5,h6{
     display:block;
     
 }
+/*********************
+ * FEED STYLES
+ * ******************/
+.feed-article{
+    margin-top: 25px;
+}
+.feed-article:after{
+    clear:both;
+    height:0;
+    width: 100%;
+    content: '';
+    display: block;
+}
+
+.feed-featured-image{
+    float:left;
+    margin: 0 10px 5px 0;
+}
+
+.feed-title{
+    margin: 0 0 1px;
+}
+
+.feed-meta{
+    color: #dedede;
+    font-size: 12px;
+    margin: 2px 0;
+}
+
+.feed-content{
+    font-size: 12px;
+}
+
 
 /*********************
  * SPECIAL POST FORMAT STYLES
@@ -250,7 +287,6 @@ h1,h2,h3,h4,h5,h6{
     margin-left: 10px;
     color:grey;
 }
-
 
 /*********************
  * RESPONSIVE IFRAME STYLES

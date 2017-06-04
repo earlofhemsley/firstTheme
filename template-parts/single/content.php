@@ -1,16 +1,6 @@
-<?php
-    //this template needs to be able to handle both a queue of articles as well as a single post of non-special quality
-    if(has_post_thumbnail(get_the_ID()) && !is_single())
-    {
-        echo sprintf('<figure class="multiple-featured-image"><img src="%s" /></figure>',
-            get_the_post_thumbnail_url(get_the_ID(), 'post-hero')
-        );
-    }
-?>
-
 <article>
 <?php
-    $titleTag = is_single() ? 'h1' : 'h3';
+    $titleTag =   'h1' ;
     $editLink = "";
     if(is_single() && current_user_can('edit_post', get_the_ID())) { 
         $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
@@ -26,7 +16,7 @@
     );
     if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');
 
-    if(has_post_thumbnail(get_the_ID()) && is_single()):
+    if(has_post_thumbnail(get_the_ID()) ):
 ?>            
         <figure class="single-featured-image">
             <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'post-hero'); ?>" />
@@ -38,8 +28,8 @@
 <?php
     endif;
     echo sprintf('<div class="%s">%s</div>',
-        is_single() ? "single-content" : "multiple-content",
-        is_single() ? apply_filters('the_content', get_the_content()) : get_the_excerpt()
+        "single-content",
+        apply_filters('the_content', get_the_content()) 
     );
 ?>
 </article>
