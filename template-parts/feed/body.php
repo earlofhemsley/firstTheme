@@ -6,7 +6,7 @@
     echo sprintf('<figure class="feed-featured-image"><img src="%s" /></figure>', $source);
 ?>
     <div>
-        <?php echo sprintf('<h2 class="feed-title"><a href="%s">%s</a></h2>', get_permalink(), get_the_title()); ?>
+        <?php echo sprintf('<h2 class="feed-title"><a href="%s">%s</a></h2>', apply_filters('the_permalink',get_permalink()), get_the_title()); ?>
         <div class="feed-meta"> <?php echo sprintf("%s | %s", get_the_author(), get_the_date('M d, Y')); ?> </div>
         <div class="feed-content"><?php the_excerpt(); ?></div>
     </div>

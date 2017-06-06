@@ -320,4 +320,17 @@ function iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
 }
 add_filter("embed_oembed_html", 'iframe_oembed_filter', 10, 4);
 
+function first_link_in_link_posts($url){
+    global $post;
+    if(get_post_format($post->ID) !== 'link') return $url;
+    $content_to_parse = apply_filters('the_content', $post->post_content);
+    $dom = new DOMDocument;
+    $dom->loadHTML($content_to_parse);
+    $anchors = $dom->getElementsByTagName('a');
+    if($anchors->length <= 0) return $url;
+    return $anchors->item(0)->getAttribute('href');
+}
+add_filter('the_permalink', 'first_link_in_link_posts');
+
+
 ?>
