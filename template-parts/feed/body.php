@@ -1,9 +1,6 @@
 <article class="feed-article">
 <?php
-    $source = has_post_thumbnail(get_the_ID()) ? get_the_post_thumbnail_url(get_the_ID(), 'thumbnail') :
-         get_template_directory_uri() . '/assets/img/greybox.png';
-    
-    echo sprintf('<figure class="feed-featured-image"><img src="%s" /></figure>', $source);
+    echo sprintf('<figure class="feed-featured-image" style="background-image: url(%s);"></figure>', get_feed_image_url());
 ?>
     <div>
         <?php echo sprintf('<h2 class="feed-title"><a href="%s">%s</a></h2>', apply_filters('the_permalink',get_permalink()), get_the_title()); ?>

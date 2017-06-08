@@ -332,5 +332,34 @@ function first_link_in_link_posts($url){
 }
 add_filter('the_permalink', 'first_link_in_link_posts');
 
+function get_feed_image_url(){
+    global $post;
+    //if has defined thumbnail, return url of thumbnail
+    if(has_post_thumbnail($post)) return get_the_post_thumbnail_url($post, 'thumbnail');
+    else{
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML(apply_filters('the_content',$post->post_content));
+        libxml_clear_errors();
+        $images = $dom->getElementsByTagName('img');
+        if($images->length >= 1){
+            //else if content has img tag, return url of image
+            return $images->item(0)->getAttribute('src');
+        }
+        else{
+            //else if content has youtube video, return url of youtube preview img
+            $iframes = $dom->getElementsByTagName('iframe');
+            foreach($iframes as $iframe){
+                $src = $iframe->getAttribute('src');
+                if(preg_match('/youtube\.com\/embed\/(\w+)/', $src, $matches)){
+                    return "https://img.youtube.com/vi/{$matches[1]}/0.jpg";
+                }
+            }
+            //else return default image, based on post type
+            return get_template_directory_uri().'/assets/img/feed-default-'.get_post_format($post->ID).'.png';
+        }
+    }
+}
+
 
 ?>
