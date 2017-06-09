@@ -23,6 +23,7 @@ You can do whatever you like with this theme as long as any modifications are no
 }
 
 #wrapper{
+    width:95%;
     max-width:1200px;
     margin:auto;
 }
@@ -92,6 +93,26 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .lmh-home-sidebar-cell > ul{
     list-style-type:none;
 }
+
+.lmh-home-search{
+    text-align:center;
+    margin: 10px 0;
+}
+
+.lmh-home-search label{
+    padding: 5px;
+}
+
+.lmh-home-search input,
+.lmh-home-search button{
+    margin: 5px 0;
+}
+
+.lmh-home-search input{
+    max-width:250px;
+    margin:auto;
+}
+
 
 
 /********************

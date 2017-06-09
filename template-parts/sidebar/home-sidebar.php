@@ -1,3 +1,8 @@
+<div class="row">
+    <div class="col-xs-12">
+        <?php get_search_form(); ?>
+    </div>
+</div>
 <div class="row lmh-home-sidebar">
     <div class="col-sm-4 lmh-home-sidebar-cell">
         <h2><?php _e('Post categories'); ?></h2>
