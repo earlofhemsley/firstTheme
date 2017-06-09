@@ -293,7 +293,7 @@ EOT;
             <{$settings['itemtag']} class="gallery-item">
                 <{$settings['icontag']} class="gallery-icon landscape">
                     <a href="#" class="photoswipe-activate" data-src="{$fullSize[0]}" data-size="{$fullSize[1]}x{$fullSize[2]}">
-                        <img src="{$thumbnail[0]}" style="width:{$thumbnail[1]}px; height:{$thumbnail[2]}px;" />
+                        <img src="{$thumbnail[0]}" />
                     </a>
                     <{$settings['captiontag']} class="gallery-caption">
                         $excerpt

@@ -328,6 +328,9 @@ h1,h2,h3,h4,h5,h6{
 .gallery{
     width:100%;
     text-align:center;
+    column-count:2;
+    -moz-column-count:2;
+    -webkit-column-count:2;
 }
 
 .gallery .gallery-item, .gallery-icon{
@@ -336,54 +339,20 @@ h1,h2,h3,h4,h5,h6{
     break-inside:avoid;
 } 
 
+.single-content .gallery-item img,
+.gallery-item img{
+    width:150px;
+    height:150px;
+}
+
 .gallery .gallery-item .gallery-caption{
     display:none;
 }
 
-.gallery-columns-1{
+.gallery.gallery-columns-1{
     column-count:1;
     -moz-column-count:1;
     -webkit-column-count:1;
-}
-.gallery-columns-2{
-    column-count:2;
-    -moz-column-count:2;
-    -webkit-column-count:2;
-}
-.gallery-columns-3{
-    column-count:3;
-    -moz-column-count:3;
-    -webkit-column-count:3;
-}
-.gallery-columns-4{
-    column-count:4;
-    -moz-column-count:4;
-    -webkit-column-count:4;
-}
-.gallery-columns-5{
-    column-count:5;
-    -moz-column-count:5;
-    -webkit-column-count:5;
-}
-.gallery-columns-6{
-    column-count:6;
-    -moz-column-count:6;
-    -webkit-column-count:6;
-}
-.gallery-columns-7{
-    column-count:7;
-    -moz-column-count:7;
-    -webkit-column-count:7;
-}
-.gallery-columns-8{
-    column-count:8;
-    -moz-column-count:8;
-    -webkit-column-count:8;
-}
-.gallery-columns-9{
-    column-count:9;
-    -moz-column-count:9;
-    -webkit-column-count:9;
 }
 
 /*********************
@@ -417,13 +386,70 @@ h1,h2,h3,h4,h5,h6{
     .lmhcustom-root-menu-container{
         display: block;
     }
-
-
+    .gallery-columns-2{
+        column-count:2;
+        -moz-column-count:2;
+        -webkit-column-count:2;
+    }
+    .gallery-columns-3,
+    .gallery-columns-4,
+    .gallery-columns-5,
+    .gallery-columns-6,
+    .gallery-columns-7,
+    .gallery-columns-8,
+    .gallery-columns-9{
+        column-count:3;
+        -moz-column-count:3;
+        -webkit-column-count:3;
+    }
 }
 
 /* md screens and larger */
-@media (min-width: 992px){}
+@media (min-width: 992px){
+    .gallery-columns-4,
+    .gallery-columns-5,
+    .gallery-columns-6,
+    .gallery-columns-7,
+    .gallery-columns-8,
+    .gallery-columns-9{
+        column-count:4;
+        -moz-column-count:4;
+        -webkit-column-count:4;
+    }
+}
 
 /* lg screens and larger */
 @media (min-width: 1200px){
+    .gallery-columns-5{
+        column-count:5;
+        -moz-column-count:5;
+        -webkit-column-count:5;
+    }
+    .gallery-columns-6{
+        column-count:6;
+        -moz-column-count:6;
+        -webkit-column-count:6;
+    }
+    .gallery-columns-7{
+        column-count:7;
+        -moz-column-count:7;
+        -webkit-column-count:7;
+    }
+    .gallery-columns-8{
+        column-count:8;
+        -moz-column-count:8;
+        -webkit-column-count:8;
+    }
+    .gallery-columns-9{
+        column-count:9;
+        -moz-column-count:9;
+        -webkit-column-count:9;
+    }
+    .gallery-columns-7 .gallery-item img,
+    .gallery-columns-8 .gallery-item img,
+    .gallery-columns-9 .gallery-item img{
+        width:100px;
+        height: 100px;
+    }
+    
 }
