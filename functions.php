@@ -362,8 +362,10 @@ function get_feed_image_url(){
 }
 
 function sanitize_pre_content($content){
-    if(preg_match('/\<pre\>(.*)\<\/pre\>/s', $content, $matches)){
-        return preg_replace('/\<pre\>(.*)\<\/pre\>/s', "<pre>" . str_replace('<', '&lt;', $matches[1]) . "</pre>", $content);
+    if(preg_match('/\<pre\>(.*)\<\/pre\>/isU', $content)){
+        return preg_replace_callback('/\<pre\>(.*)\<\/pre\>/isU',
+            function($match){ return "<pre>" . str_replace('<', '&lt;', $match[1]) . "</pre>"; }, 
+            $content);
     } 
     else return $content;
 }
