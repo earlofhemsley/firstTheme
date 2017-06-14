@@ -2,7 +2,7 @@
 
 if(!isset($content_width)) $content_width = 1200;
 
-function lmhcustom_setup(){
+function elegance_setup(){
 
     //add_image_size('root-logo-image', 150, 150);
     add_image_size('post-hero', 1000, 563, array('center','top'));
@@ -25,9 +25,9 @@ function lmhcustom_setup(){
     add_post_type_support('post', array('excerpt','title','author','custom-fields','comments','post-formats','revisions'));
     add_post_type_support('page', array('excerpt','title','author','custom-fields','comments','post-formats','revisions'));
 }
-add_action('after_setup_theme', 'lmhcustom_setup');
+add_action('after_setup_theme', 'elegance_setup');
 
-function lmhcustom_customizer_setup($wp_customize){
+function elegance_customizer_setup($wp_customize){
     /*
         Have a "front page" section that allows for up to five pages to be set
         The page title appears on the home page menu at the bottom
@@ -68,9 +68,9 @@ function lmhcustom_customizer_setup($wp_customize){
 
     //TODO: figure out how to dynamically add a new home page section beyond these five.
 }
-add_action('customize_register','lmhcustom_customizer_setup');
+add_action('customize_register','elegance_customizer_setup');
 
-function lmhcustom_widget_setup(){
+function elegance_widget_setup(){
     for($i = 1; $i <= 5; $i++){
         if(get_theme_mod('front_page_widget_enable_'.$i)){
             register_sidebar( array( 
@@ -119,10 +119,10 @@ function lmhcustom_widget_setup(){
         'after_widget' => '',
     ));
 }
-add_action('widgets_init', 'lmhcustom_widget_setup');
+add_action('widgets_init', 'elegance_widget_setup');
 
 //enqueue needed styles and scripts
-function lmhcustom_scripts_styles(){
+function elegance_scripts_styles(){
     wp_enqueue_style('bootstrap', get_template_directory_uri().'/assets/css/bootstrap.min.css');
     wp_enqueue_style('bootstrap-theme', get_template_directory_uri().'/assets/css/bootstrap-theme.min.css');
     wp_enqueue_style('core',get_stylesheet_uri(), array('bootstrap', 'bootstrap-theme'));
@@ -146,7 +146,7 @@ function lmhcustom_scripts_styles(){
     wp_register_style('photoswipe-default-skin-css', get_template_directory_uri().'/assets/css/default-photoswipe-skin/default-skin.css');
 
 }
-add_action('wp_enqueue_scripts','lmhcustom_scripts_styles');
+add_action('wp_enqueue_scripts','elegance_scripts_styles');
 
 function register_menus(){
     register_nav_menus( array(
@@ -231,7 +231,7 @@ function getPhotoSwipeFrame(){
 EOT;
 }
 
-function lmhcustom_gallery_shortcode($output = '', $atts, $instance){
+function elegance_gallery_shortcode($output = '', $atts, $instance){
     wp_enqueue_script('photoswipe-core');
     wp_enqueue_script('photoswipe-ui');
     wp_enqueue_script('photoswipe-render');
@@ -307,9 +307,9 @@ EOT;
 
     return $return;
 }
-add_filter('post_gallery', 'lmhcustom_gallery_shortcode', 10, 3);
+add_filter('post_gallery', 'elegance_gallery_shortcode', 10, 3);
 
-function iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
+function elegance_iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
     //regex on html to see if there's an iframe
     //if there's an iframe, wrap the html in a div such that it can be presented
     //return it
@@ -318,9 +318,9 @@ function iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
     }
     return $cachedHtml;
 }
-add_filter("embed_oembed_html", 'iframe_oembed_filter', 10, 4);
+add_filter("embed_oembed_html", 'elegance_iframe_oembed_filter', 10, 4);
 
-function first_link_in_link_posts($url){
+function elegance_first_link_in_link_posts($url){
     global $post;
     if(get_post_format($post->ID) !== 'link') return $url;
     $content_to_parse = apply_filters('the_content', $post->post_content);
@@ -330,9 +330,9 @@ function first_link_in_link_posts($url){
     if($anchors->length <= 0) return $url;
     return $anchors->item(0)->getAttribute('href');
 }
-add_filter('the_permalink', 'first_link_in_link_posts');
+add_filter('the_permalink', 'elegance_first_link_in_link_posts');
 
-function get_feed_image_url(){
+function elegance_get_feed_image_url(){
     global $post;
     //if has defined thumbnail, return url of thumbnail
     if(has_post_thumbnail($post)) return get_the_post_thumbnail_url($post, 'thumbnail');

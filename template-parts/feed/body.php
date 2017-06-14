@@ -1,6 +1,6 @@
 <article class="feed-article">
 <?php
-    echo sprintf('<figure class="feed-featured-image" style="background-image: url(%s);"></figure>', get_feed_image_url());
+    echo sprintf('<figure class="feed-featured-image" style="background-image: url(%s);"></figure>', elegance_get_feed_image_url());
 
     $editLink = (current_user_can('edit_post', get_the_ID())) ? 
         sprintf("&nbsp;|&nbsp;<a href='%s' target='_blank'><span class='glyphicon glyphicon-pencil' ></span></a>",
