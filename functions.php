@@ -361,15 +361,27 @@ function get_feed_image_url(){
     }
 }
 
-function sanitize_pre_content($content){
-    if(preg_match('/\<pre\>(.*)\<\/pre\>/isU', $content)){
-        return preg_replace_callback('/\<pre\>(.*)\<\/pre\>/isU',
+function elegance_sanitize_pre_content($content){
+    if(preg_match('/\<pre.*\>(.*)\<\/pre\>/isU', $content)){
+        return preg_replace_callback('/\<pre.*\>(.*)\<\/pre\>/isU',
             function($match){ return "<pre>" . str_replace('<', '&lt;', $match[1]) . "</pre>"; }, 
             $content);
     } 
     else return $content;
 }
-add_filter('the_content', 'sanitize_pre_content', 9);
+add_filter('the_content', 'elegance_sanitize_pre_content', 9);
+
+function elegance_add_pre_quicktag(){
+    if(wp_script_is('quicktags')){
+        echo <<< EOT
+        <script type="text/javascript">
+            QTags.addButton("elegance_pre", "pre", "<pre lang='php'>", "</pre>", "p", "Preformatted text", 111);
+        </script>
+EOT;
+
+    }
+}
+add_action('admin_print_footer_scripts', 'elegance_add_pre_quicktag');
 
 
 ?>
