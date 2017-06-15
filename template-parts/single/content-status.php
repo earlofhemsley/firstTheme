@@ -28,6 +28,7 @@
             $thumbnail->post_excerpt
         );
     }
+    elegance_post_links();
 ?>
 
 </article>

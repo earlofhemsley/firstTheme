@@ -323,14 +323,19 @@ add_filter("embed_oembed_html", 'elegance_iframe_oembed_filter', 10, 4);
 function elegance_first_link_in_link_posts($url){
     global $post;
     if(get_post_format($post->ID) !== 'link') return $url;
-    $content_to_parse = apply_filters('the_content', $post->post_content);
+    return elegance_parse_content_for_link(apply_filters('the_content', $post->post_content));
+}
+add_filter('the_permalink', 'elegance_first_link_in_link_posts');
+
+if(!function_exists('elegance_parse_content_for_link')):
+function elegance_parse_content_for_link($content_to_parse){
     $dom = new DOMDocument;
     $dom->loadHTML($content_to_parse);
     $anchors = $dom->getElementsByTagName('a');
     if($anchors->length <= 0) return $url;
     return $anchors->item(0)->getAttribute('href');
 }
-add_filter('the_permalink', 'elegance_first_link_in_link_posts');
+endif;
 
 function elegance_get_feed_image_url(){
     global $post;
@@ -383,5 +388,34 @@ EOT;
 }
 add_action('admin_print_footer_scripts', 'elegance_add_pre_quicktag');
 
+if(!function_exists('elegance_post_links')):
+function elegance_post_links(){
+    global $post;
+    $prev = (is_attachment()) ? get_post($post->post_parent) : get_adjacent_post();
+    $next = get_adjacent_post(false, '', false);
+    if(!prev && !next) return;
+
+    $plink = $prev ? sprintf('<span class="single-prev-post-link"><a href="%s">%s</a></span>', 
+        get_post_format($prev->ID) == 'link' ?
+            elegance_parse_content_for_link(apply_filters('the_content', $prev->post_content)) . '" target="_blank' : 
+            get_permalink($prev->ID),
+        "&laquo; {$prev->post_title}"
+    ) : '<span class="single-prev-post-link"></span>';
+    $nlink = $next ? sprintf('<span class="single-next-post-link"><a href="%s">%s</a></span>', 
+        get_post_format($next->ID) == 'link' ?
+            elegance_parse_content_for_link(apply_filters('the_content', $next->post_content)) . '" target="_blank' :
+            get_permalink($next->ID),
+        "{$next->post_title} &raquo;"
+    ) : '<span class="single-next-post-link"></span>';
+
+    echo <<< EOT
+    <div class="single-post-links">
+        $plink
+        $nlink     
+    </div>
+EOT;
+
+}
+endif;
 
 ?>

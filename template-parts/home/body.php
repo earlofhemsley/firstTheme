@@ -46,7 +46,7 @@
             while($standard->have_posts()){
                 $standard->the_post();
                 echo sprintf("<h3><a href='%s'>%s</a></h3><p class='no-margin'>%s</p>",
-                    get_permalink(),
+                    apply_filters('the_permalink', get_permalink()),
                     get_the_title(),
                     get_the_date()
                 );

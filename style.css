@@ -51,11 +51,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .lmh-home-root-menu-container{
-    width: 500px;
+    width: 300px;
     position: absolute;
     bottom: 30px;
     left: 50%;
-    margin: 0 -250px;
+    margin: 0 -150px;
 }
 
 .lmh-home-root-menu-container ul {
@@ -64,7 +64,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 .lmh-home-root-menu-container li.menu-item{
     display:inline-block;
-    width: 164px;
+    width: 100px;
     padding: 5px 0;
     text-align:center;
 }
@@ -196,6 +196,7 @@ h1,h2,h3,h4,h5,h6{
 
 .lmh-site-search input{
     margin-bottom: 7px;
+    width:95%;
 }
 
 /*********************
@@ -273,6 +274,11 @@ h1,h2,h3,h4,h5,h6{
     margin:10px;
     font-family:courier;
 }
+
+.single-post-links{
+    display:none;
+}
+
 /*********************
  * FEED STYLES
  * ******************/
@@ -412,6 +418,17 @@ h1,h2,h3,h4,h5,h6{
 /* sm screens and larger */
 @media (min-width: 768px){
 
+
+    .lmh-home-root-menu-container{
+        width:500px;
+        margin: 0 -250px;
+    }
+
+
+    .lmh-home-root-menu-container li.menu-item{
+        width: 164px;
+    }
+
     .single-content img.alignleft{
         float:left;
         margin: 0 20px 15px 0;
@@ -420,6 +437,17 @@ h1,h2,h3,h4,h5,h6{
     .single-content img.alignright{
         float:right;
         margin:0 0 20px 20px;
+    }
+
+    .single-post-links{
+        display:block;
+        padding: 10px;
+        margin-top: 5px;
+        border-top: solid 1px #dedede;
+    }
+
+    .single-next-post-link{
+        float:right;
     }
 
     .lmhcustom-nav-toggle{
