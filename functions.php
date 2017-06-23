@@ -365,6 +365,15 @@ function elegance_get_feed_image_url(){
         }
     }
 }
+function elegance_sanitize_code_content($content){
+    if(preg_match('/\<code.*\>(.*)\<\/code\>/isU', $content)){
+        return preg_replace_callback('/\<code.*\>(.*)\<\/code\>/isU',
+            function($match){ return "<code>" . str_replace('<', '&lt;', $match[1]) . "</code>"; }, 
+            $content);
+    } 
+    else return $content;
+}
+add_filter('the_content', 'elegance_sanitize_code_content', 8);
 
 function elegance_sanitize_pre_content($content){
     if(preg_match('/\<pre.*\>(.*)\<\/pre\>/isU', $content)){
