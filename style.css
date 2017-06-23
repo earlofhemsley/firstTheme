@@ -222,7 +222,9 @@ h1,h2,h3,h4,h5,h6{
     width:100%;   
 }
 
-.single-body .single-featured-image figcaption{
+.single-body .single-featured-image figcaption,
+.single-content figcaption
+{
     background: #dfdfdf;
     font-style: italic;
     padding: 5px 10px;
@@ -253,11 +255,12 @@ h1,h2,h3,h4,h5,h6{
     padding-left:30px;
 }
 
-.single-content img{
+.single-content figure,
+.single-content p > img{
     margin: 20px 0;
 }
 
-.single-content img.aligncenter{
+.single-content .aligncenter{
     max-width:700px;
     width:95%;
     margin: 20px auto;
@@ -429,12 +432,12 @@ h1,h2,h3,h4,h5,h6{
         width: 164px;
     }
 
-    .single-content img.alignleft{
+    .single-content .alignleft{
         float:left;
         margin: 0 20px 15px 0;
     }
 
-    .single-content img.alignright{
+    .single-content .alignright{
         float:right;
         margin:0 0 20px 20px;
     }
