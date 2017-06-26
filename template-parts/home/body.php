@@ -56,4 +56,3 @@
         }
 ?>
     </div>
-<?php get_sidebar(); ?>
