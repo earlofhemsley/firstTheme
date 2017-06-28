@@ -113,6 +113,14 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin:auto;
 }
 
+.elegance-page-links,
+.elegance-home-blog-entry{
+    margin: 0 0 15px;
+}
+
+.elegance-home-blog-entry h3{
+    margin: 0px;
+}
 
 
 /********************
@@ -123,9 +131,10 @@ nav.nav{
     margin-top:10px;
 }
 
-.custom-logo-link{
+/*.custom-logo-link{
     display:block;
 }
+*/
 
 .navbar .container{
     padding: 10px 0;

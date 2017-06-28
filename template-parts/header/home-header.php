@@ -2,7 +2,9 @@
     <div id="home-header-container" class="home-section home-separated" style="height:3000px">
         <div id="home-header-mask" style="display:none;">
             <div id="home-leadbox">
-                <div class="text-center slightly-padded"><?php the_custom_logo(); ?></div>
+                <div class="text-center slightly-padded">
+                    <?php if(function_exists('the_custom_logo')) the_custom_logo(); ?>
+                </div>
                 <h1 class="text-center slightly-padded"><?php bloginfo("name"); ?></h1>
                 <h2 class="text-center slightly-padded"><?php bloginfo("description"); ?></h2>
             </div>

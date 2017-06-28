@@ -19,17 +19,6 @@ $(document).ready(function(){
     if(mask != null){
         mask.delay(200).fadeIn();
     }
-
-
-    $('.lmhcustom-nav-toggle').on('click', function(){
-        if($(this).children(':first-child').html() == "Show Menu"){
-            $(this).children(':first-child').html("Hide Menu");
-        }
-        else{
-            $(this).children(':first-child').html("Show Menu");
-        
-        }
-    });
     
     window.onresize = resize;
 

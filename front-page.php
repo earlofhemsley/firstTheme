@@ -1,5 +1,6 @@
 <?php 
-    /*
+get_header();
+ /*
     first, get the social media menu (and assign images if possible) output as a home page section. 
         --idea ... set these in the customizer? or make a widget area that could contain a social menu?
     set up an array of arrays that obtains the page/post ids we will need for each home page section
@@ -9,7 +10,7 @@
     por final, have a blog section that rolls off the standard blog roll
      */
     
-
+if(!is_paged()):
     $query = get_home_section_query();
     while($query->have_posts()):
         $query->the_post();
@@ -33,26 +34,29 @@
     </div>
 <?php
     endwhile;
-    //TODO: pull in the standard blog loop
-        $standard = new WP_Query(array(
-            'post_type' =>  'post',
-            'post_status' => 'publish'
-        ));
+endif;
+wp_reset_query();
 ?>
     <div class="home-padded text-center" id="blogroll">
-        <h2>Blog</h2>
+        <div class="elegance-page-links">
+            <h3><?php previous_posts_link('Newer posts'); ?></h3>
+        </div>
 <?php
-        if($standard->have_posts()){
-            while($standard->have_posts()){
-                $standard->the_post();
-                echo sprintf("<h3><a href='%s'>%s</a></h3><p class='no-margin'>%s</p>",
-                    apply_filters('the_permalink', get_permalink()),
-                    get_the_title(),
-                    get_the_date()
-                );
+        if(!is_paged()) echo '<h2>Blog</h2>';
+        if(have_posts()){
+            while(have_posts()){
+                the_post();
+                get_template_part('template-parts/feed/body', 'home');
             }
         }else{
             echo "<h3>Nothing here yet. Check back soon!</h3>";
         }
 ?>
+        <div class="elegance-page-links">
+            <h3><?php next_posts_link('Older posts'); ?></h3>
+        </div>
     </div>
+<?php
+    get_sidebar();
+    get_footer();
+?>
