@@ -31,6 +31,5 @@
         "single-content",
         apply_filters('the_content', get_the_content()) 
     );
-    elegance_post_links();
 ?>
 </article>

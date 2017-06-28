@@ -9,6 +9,7 @@ get_header();
                 the_post();
                 get_template_part('template-parts/single/content', get_post_format(get_the_ID()));
             }
+            elegance_post_links();
         }
     ?>
     </div>

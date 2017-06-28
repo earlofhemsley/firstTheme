@@ -306,13 +306,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .feed-featured-image{
-    float:left;
-    width: 150px;
-    height: 150px;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 100%;
-    margin: 0 10px 5px 0;
+    display:none;
 }
 
 .feed-title{
@@ -330,6 +324,17 @@ h1,h2,h3,h4,h5,h6{
 
 .feed-content{
     font-size: 12px;
+}
+
+.elegance-feed-post-links{
+    border-top: solid #dedede 1px;
+    border-bottom: solid #dedede 1px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.elegance-feed-next-posts{
+    float:right;
 }
 
 
@@ -454,12 +459,27 @@ h1,h2,h3,h4,h5,h6{
     .single-post-links{
         display:block;
         padding: 10px;
-        margin-top: 5px;
+        margin-top: 20px;
         border-top: solid 1px #dedede;
     }
 
     .single-next-post-link{
         float:right;
+    }
+
+    .feed-featured-image{
+        display:block;
+        float:left;
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 100%;
+        margin: 0 10px 5px 0;
+        width: 150px;
+        height: 150px;
+    }
+
+    .elegance-feed-post-links{
+        border-bottom: none;
     }
 
     .lmhcustom-nav-toggle{

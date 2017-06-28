@@ -27,7 +27,6 @@
         get_the_date('M d, Y'),
         $editLink
     );
-    elegance_post_links();
     
     if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');
 ?>
