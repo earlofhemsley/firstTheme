@@ -292,6 +292,14 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /*********************
+ * COMMENT STYLES
+ * ******************/
+.elegance-comment-form-required{
+    color:#a00;
+}
+
+
+/*********************
  * FEED STYLES
  * ******************/
 .feed-article{

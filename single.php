@@ -11,6 +11,7 @@ get_header();
             }
             elegance_post_links();
         }
+        if(comments_open() || get_comments_number()) comments_template();
     ?>
     </div>
     <div class="col-sm-4 col-md-3 single-sidebar"><?php get_sidebar();?></div>
