@@ -13,16 +13,16 @@ class Elegance_Comment_Walker extends Walker_Comment{
 
             if('div' != $args['style']) $props['tag'] = 'li';
             $subtag = ('html5' == $args['format']) ? 'article' : 'div';
-            $props['subtag_open'] = '<'.$subtag.' id="elegance-comment-subdiv-'.get_comment_ID().'">';
+            $props['subtag_open'] = '<'.$subtag.' id="elegance-comment-subdiv-'.$comment->comment_ID.'">';
             $props['subtag_close'] = '</'.$subtag.'>';
         }
 
         $props['wrapper_class'] = get_comment_class( $this->has_children ? 'elegance-comment-parent elegance-comment' : 'elegance-comment', $comment );
-        $props['comment_id'] = 'elegance-comment-' . get_comment_ID();
+        $props['comment_id'] = 'elegance-comment-' . $comment->comment_ID;
         $props['avatar'] = get_avatar($comment, $args['avatar_size']);
         $props['author_meta'] = sprintf('<strong>%s</strong> <span class="elegance-comment-time-posted">%s</span>',
-            get_comment_author_link($comment),
-            sprintf('%1$s %2$s', get_comment_date($comment), get_comment_time())
+            get_comment_author_link($comment->comment_ID),
+            sprintf('%1$s %2$s', get_comment_date('', $comment->comment_ID), get_comment_time())
         );
         $props['comment_text'] = ('0' == $comment->comment_approved) ? 'This comment is awaiting moderation' : get_comment_text($comment, array_merge($args, array('add_below' => $add_below, 'depth' => $depth)));
 
@@ -69,8 +69,8 @@ EOT;
         <{$props['tag']} class="{$props['wrapper_class']}" id="{$props['comment_id']}">
             {$props['subtag_open']}
                 <div class="elegance-comment-author-avatar">{$props['avatar']}</div>
-                <footer>
-                    <p class="elegance-comment-author-meta">{$props['author_meta']}</p>
+                <footer class="elegance-comment-author-meta">
+                    {$props['author_meta']}
                 </footer>
                 <p class="elegance-comment-content">{$props['comment_text']}</p>
                 <div class="elegance-comment-actions">
