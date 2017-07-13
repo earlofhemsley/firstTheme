@@ -43,7 +43,7 @@ class Elegance_Comment_Walker extends Walker_Comment{
     }
 
     protected function comment($comment, $depth, $args){
-        $props = prepare_values($comment, $depth, $args);
+        $props = $this->prepare_values($comment, $depth, $args);
 
         echo <<< EOT
 
@@ -62,8 +62,8 @@ EOT;
 
     }
 
-    protected function html5_comment(){
-        $props = prepare_values($comment, $depth, $args);
+    protected function html5_comment($comment, $depth, $args){
+        $props = $this->prepare_values($comment, $depth, $args);
 
         echo <<< EOT
         <{$props['tag']} class="{$props['wrapper_class']}" id="{$props['comment_id']}">
