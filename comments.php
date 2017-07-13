@@ -8,6 +8,13 @@
         echo '<h3 class="elegance-comments-title">Comments</h3>';
     }
 
+    wp_list_comments(array(
+        'walker' => new Elegance_Comment_Walker(),
+        'style' => 'div',
+        'format' => 'html5'
+    ));
+
+
     $commenter = wp_get_current_commenter();
     $req = get_option('require_name_email');
 

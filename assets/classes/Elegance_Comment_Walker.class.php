@@ -1,0 +1,96 @@
+<?php
+class Elegance_Comment_Walker extends Walker_Comment{
+
+    private function prepare_values($comment, $depth, $args){
+        $props = array();
+        $props['subtag_open'] = '';
+        $props['subtag_close'] = '';
+        $props['tag'] = 'div';
+        $add_below = 'elegance-comment';
+
+        if('div' != $args['style'] || 'html5' == $args['format']){
+            $add_below = 'elegance-comment-subdiv'; 
+
+            if('div' != $args['style']) $props['tag'] = 'li';
+            $subtag = ('html5' == $args['format']) ? 'article' : 'div';
+            $props['subtag_open'] = '<'.$subtag.' id="elegance-comment-subdiv-'.get_comment_ID().'">';
+            $props['subtag_close'] = '</'.$subtag.'>';
+        }
+
+        $props['wrapper_class'] = get_comment_class( $this->has_children ? 'elegance-comment-parent elegance-comment' : 'elegance-comment', $comment );
+        $props['comment_id'] = 'elegance-comment-' . get_comment_ID();
+        $props['avatar'] = get_avatar($comment, $args['avatar_size']);
+        $props['author_meta'] = sprintf('<strong>%s</strong> <span class="elegance-comment-time-posted">%s</span>',
+            get_comment_author_link($comment),
+            sprintf('%1$s %2$s', get_comment_date($comment), get_comment_time())
+        );
+        $props['comment_text'] = ('0' == $comment->comment_approved) ? 'This comment is awaiting moderation' : get_comment_text($comment, array_merge($args, array('add_below' => $add_below, 'depth' => $depth)));
+
+        $props['reply_link'] = get_comment_reply_link(array(
+            'add_below' => $add_below,
+            'login_text' => 'Log in',
+            'max_depth' => $args['max_depth'],
+            'depth' => $depth,
+            'before' => '<div class="elegance-comment-reply">',
+            'after' => '</div><!-- elegance-comment-reply -->'
+        ));
+
+        $temp_edit_link =  get_edit_comment_link($comment);
+        $props['edit_link'] = ($temp_edit_link) ? 
+                '<span class="alignright elegance-comment edit">'.$temp_edit_link.'</span>' : '';
+
+        return $props;
+    }
+
+    protected function comment($comment, $depth, $args){
+        $props = prepare_values($comment, $depth, $args);
+
+        echo <<< EOT
+
+        <{$props['tag']} class="{$props['wrapper_class']}" id="{$props['comment_id']}">
+            {$props['subtag_open']}
+                <div class="elegance-comment-author-avatar">{$props['avatar']}</div>
+                <p class="elegance-comment-author-meta">{$props['author_meta']}</p>
+                <p class="elegance-comment-content">{$props['comment_text']}</p>
+                <div class="elegance-comment-actions">
+                    &nbsp;
+                    {$props['edit_link']}
+                    {$props['reply_link']}
+                </div>
+            {$props['subtag_close']}
+EOT;
+
+    }
+
+    protected function html5_comment(){
+        $props = prepare_values($comment, $depth, $args);
+
+        echo <<< EOT
+        <{$props['tag']} class="{$props['wrapper_class']}" id="{$props['comment_id']}">
+            {$props['subtag_open']}
+                <div class="elegance-comment-author-avatar">{$props['avatar']}</div>
+                <footer>
+                    <p class="elegance-comment-author-meta">{$props['author_meta']}</p>
+                </footer>
+                <p class="elegance-comment-content">{$props['comment_text']}</p>
+                <div class="elegance-comment-actions">
+                    &nbsp;
+                    {$props['edit_link']}
+                    {$props['reply_link']}
+                </div>
+            {$props['subtag_close']}    
+
+EOT;
+    }
+    
+    protected function ping( $comment, $depth, $args ) {
+        $tag = ( 'div' == $args['style'] ) ? 'div' : 'li';
+?>
+        <<?php echo $tag; ?> id="elegance-comment-<?php comment_ID(); ?>" <?php comment_class( 'elegance-comment', $comment ); ?>>
+            <div class="elegance-comment-content">
+                <?php _e( 'Pingback:' ); ?> <?php comment_author_link( $comment ); ?> <?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+            </div>
+<?php
+        }
+
+}

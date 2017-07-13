@@ -1,5 +1,7 @@
 <?php
 
+require_once('assets/classes/Elegance_Comment_Walker.class.php');
+
 if(!isset($content_width)) $content_width = 1200;
 
 function elegance_setup(){

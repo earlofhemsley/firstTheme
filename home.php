@@ -9,7 +9,7 @@ get_header();
     special cases are the resume experience/project items
     por final, have a blog section that rolls off the standard blog roll
      */
-    
+
 if(!is_paged()):
     $query = get_home_section_query();
     while($query->have_posts()):
