@@ -11,7 +11,9 @@
     wp_list_comments(array(
         'walker' => new Elegance_Comment_Walker(),
         'style' => 'div',
-        'format' => 'html5'
+        'format' => 'html5',
+        'avatar_size' => 40,
+        'max_depth' => '3',
     ));
 
 

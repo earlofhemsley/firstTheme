@@ -432,4 +432,12 @@ EOT;
 }
 endif;
 
+if(!function_exists('elegance_add_class_to_comment_link')):
+function elegance_add_class_to_comment_link($link, $args, $comment, $post){
+    $link = str_replace("class='comment-reply-link'", "class='comment-reply-link btn btn-xs btn-primary'", $link);
+    return $link;
+}
+add_filter('comment_reply_link', 'elegance_add_class_to_comment_link', 10, 4);
+endif;
+
 ?>

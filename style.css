@@ -298,6 +298,27 @@ h1,h2,h3,h4,h5,h6{
     color:#a00;
 }
 
+.elegance-comment{
+    margin-top: 15px;
+}
+
+.elegance-comment-author-avatar{
+    float:left;
+    margin: 0 10px 5px 0;
+}
+
+.elegance-comment-time-posted{
+    color:#ddd;
+    font-size: 12px;
+}
+
+.elegance-comment-content{
+    margin: 5px 0;
+}
+
+.elegance-comment-actions{
+    text-align: right;
+}
 
 /*********************
  * FEED STYLES

@@ -93,13 +93,13 @@ EOT;
             'login_text' => 'Log in',
             'max_depth' => $args['max_depth'],
             'depth' => $depth,
-            'before' => '<div class="elegance-comment-reply">',
-            'after' => '</div><!-- elegance-comment-reply -->'
+            'before' => '<span class="elegance-comment-action">',
+            'after' => '</span><!-- elegance-comment-action -->'
         ));
 
         $temp_edit_link =  get_edit_comment_link($comment);
         $props['edit_link'] = ($temp_edit_link) ? 
-                '<span class="alignright elegance-comment edit">'.$temp_edit_link.'</span>' : '';
+                '<span class="elegance-comment-action"><a class="btn btn-xs btn-default" href="'.$temp_edit_link.'" target="_blank">Edit</a></span>' : '';
 
         return $props;
     }
