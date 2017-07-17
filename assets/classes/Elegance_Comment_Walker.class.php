@@ -78,7 +78,8 @@ EOT;
             $props['subtag_close'] = '</'.$subtag.'>';
         }
 
-        $props['wrapper_class'] = get_comment_class( $this->has_children ? 'elegance-comment-parent elegance-comment' : 'elegance-comment', $comment );
+        $props['wrapper_class'] = implode(' ', get_comment_class( $this->has_children ? 'elegance-comment-parent elegance-comment' : 'elegance-comment', $comment ));
+
         $props['comment_id'] = 'elegance-comment-' . $comment->comment_ID;
         $props['avatar'] = get_avatar($comment, $args['avatar_size']);
         $props['author_meta'] = sprintf('<strong>%s</strong> <span class="elegance-comment-time-posted">%s</span>',
