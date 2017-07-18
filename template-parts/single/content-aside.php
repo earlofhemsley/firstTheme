@@ -10,18 +10,19 @@
         );
     }
 
+    
+    printf("<div class='single-content format-aside'>%s</div>",
+        apply_filters('the_content', get_the_content())
+    );
+
     $editLink = "";
     if(is_single() && current_user_can('edit_post', get_the_ID())) { 
         $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
             get_edit_post_link()
         );
     }
-    
-    echo sprintf("<div class='single-content format-aside'>%s</div>",
-        apply_filters('the_content', get_the_content())
-    );
 
-    echo sprintf('<p class="format-aside-title">This update published under the title: %s</p><div class="single-meta">by %s, published on %s%s</div>',
+    printf('<p class="format-aside-title">This update published under the title: %s</p><div class="single-meta">by %s, published on %s%s</div>',
         get_the_title(),
         get_the_author(),
         get_the_date('M d, Y'),

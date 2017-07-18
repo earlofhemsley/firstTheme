@@ -1,19 +1,9 @@
 <article>
 <?php
-    $editLink = "";
-    if(is_single() && current_user_can('edit_post', get_the_ID())) { 
-        $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
-            get_edit_post_link()
-        );
-    }
-    echo sprintf('<h1 class="entry-title">%s</h1><div class="single-meta">by %s, published on %s%s</div>',
-        get_the_title(),
-        get_the_author(),
-        get_the_date('M d, Y'),
-        $editLink
-    );
+    
+    echo get_single_post_byline();
 
-    echo sprintf("<div class='single-content format-status'>%s</div>",
+    printf("<div class='single-content format-status'>%s</div>",
         apply_filters('the_content', get_the_content())
     );
     

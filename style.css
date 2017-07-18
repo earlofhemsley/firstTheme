@@ -439,6 +439,10 @@ h1,h2,h3,h4,h5,h6{
     break-inside:avoid;
 } 
 
+.single-content figure.gallery-item{
+    margin: 0 0 20px 0;
+}
+
 .single-content .gallery-item img,
 .gallery-item img{
     width:150px;

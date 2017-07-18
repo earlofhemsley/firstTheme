@@ -173,6 +173,32 @@ function get_home_section_query(){
     return $query;
 }
 
+/**********************
+ * get_single_post_byline
+ * gets the byline.
+ * must be used within the loop
+ * intended to be used for single content with single content
+ **********************/
+
+if(!function_exists('get_single_post_byline')):
+function get_single_post_byline(){
+    $editLink = "";
+    if(current_user_can('edit_post', get_the_ID())) { 
+        $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
+            get_edit_post_link());
+    }
+    $commentLink = '<a href="#elegance-comments-area">' . (get_comments_number() > 0 ? get_comments_number() . _n(' comment', ' comments', get_comments_number(), 'elegance') : 'Leave a comment') . '</a>';
+    return sprintf('<h1 class="entry-title">%s</h1><div class="single-meta">by %s | %s | %s%s</div>',
+        get_the_title(),
+        get_the_author(),
+        get_the_date('M d, Y'),
+        $commentLink,
+        $editLink
+    );
+}
+endif;
+
+if(!function_exists('getPhotoSwipeFrame')):
 function getPhotoSwipeFrame(){
     return <<< EOT
         <div class="pswp" id="photoswipe" tabindex="-1" role="dialog" aria-hidden="true">
@@ -235,7 +261,9 @@ function getPhotoSwipeFrame(){
         </div>
 EOT;
 }
+endif;
 
+if(!function_exists('elegance_gallery_shortcode')):
 function elegance_gallery_shortcode($output = '', $atts, $instance){
     wp_enqueue_script('photoswipe-core');
     wp_enqueue_script('photoswipe-ui');
@@ -313,7 +341,9 @@ EOT;
     return $return;
 }
 add_filter('post_gallery', 'elegance_gallery_shortcode', 10, 3);
+endif;
 
+if(!function_exists('elegance_iframe_oembed_filter')):
 function elegance_iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
     //regex on html to see if there's an iframe
     //if there's an iframe, wrap the html in a div such that it can be presented
@@ -324,13 +354,16 @@ function elegance_iframe_oembed_filter($cachedHtml, $url, $attr, $post_ID){
     return $cachedHtml;
 }
 add_filter("embed_oembed_html", 'elegance_iframe_oembed_filter', 10, 4);
+endif;
 
+if(!function_exists('elegance_first_link_in_link_posts')):
 function elegance_first_link_in_link_posts($url){
     global $post;
     if(get_post_format($post->ID) !== 'link') return $url;
     return elegance_parse_content_for_link(apply_filters('the_content', $post->post_content));
 }
 add_filter('the_permalink', 'elegance_first_link_in_link_posts');
+endif;
 
 if(!function_exists('elegance_parse_content_for_link')):
 function elegance_parse_content_for_link($content_to_parse){
