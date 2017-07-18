@@ -78,7 +78,11 @@ EOT;
             $props['subtag_close'] = '</'.$subtag.'>';
         }
 
-        $props['wrapper_class'] = implode(' ', get_comment_class( $this->has_children ? 'elegance-comment-parent elegance-comment' : 'elegance-comment', $comment ));
+        $tmpClass = 'elegance-comment';
+        if($this->has_children) $tmpClass .= ' elegance-comment-parent';
+        if(intval($comment->comment_parent) != '0') $tmpClass .= ' elegance-comment-child';
+
+        $props['wrapper_class'] = implode(' ', get_comment_class( $tmpClass, $comment ));
 
         $props['comment_id'] = 'elegance-comment-' . $comment->comment_ID;
         $props['avatar'] = get_avatar($comment, $args['avatar_size']);

@@ -6,14 +6,17 @@
         $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
             get_edit_post_link());
     }
-    echo sprintf('<%s class="entry-title">%s</%s><div class="single-meta">by %s, published on %s%s</div>',
+    $commentLink = '<a href="#elegance-comments-area">' . get_comments_number() . _n(' comment', ' comments', get_comments_number(), 'elegance') . '</a>';
+    printf('<%s class="entry-title">%s</%s><div class="single-meta">by %s | %s | %s%s</div>',
         $titleTag,
         get_the_title(),
         $titleTag,
         get_the_author(),
         get_the_date('M d, Y'),
+        $commentLink,
         $editLink
     );
+
     if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');
 
     if(has_post_thumbnail(get_the_ID()) ):

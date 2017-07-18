@@ -142,6 +142,8 @@ nav.nav{
 
 .lmhcustom-nav-toggle{
     margin: 5px;   
+    display: block;
+    margin: 5px auto;
 }
 
 .site-name{
@@ -318,6 +320,10 @@ h1,h2,h3,h4,h5,h6{
 
 .elegance-comment-actions{
     text-align: right;
+}
+
+.elegance-comment-child{
+    margin-left:20px;
 }
 
 /*********************
@@ -532,6 +538,10 @@ h1,h2,h3,h4,h5,h6{
         column-count:3;
         -moz-column-count:3;
         -webkit-column-count:3;
+    }
+    
+    .elegance-comment-child{
+        margin-left:40px;
     }
 }
 

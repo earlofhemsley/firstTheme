@@ -2,7 +2,7 @@
     if(post_password_required()) return;
 ?>
 
-<div class="elegance-comments-area">
+<div id="elegance-comments-area">
 <?php
     if(have_comments()){
         echo '<h3 class="elegance-comments-title">Comments</h3>';
