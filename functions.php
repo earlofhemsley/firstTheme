@@ -142,6 +142,7 @@ function elegance_scripts_styles(){
     
     if(is_front_page()) wp_enqueue_script('main',get_template_directory_uri().'/assets/js/main.js', array('jquery'), null, true);
     if(!is_front_page()) wp_enqueue_script('nav',get_template_directory_uri().'/assets/js/nav.js', array('jquery'), null, true);
+    wp_enqueue_script('scroll', get_template_directory_uri().'/assets/js/scroll.js', array('jquery'), null, true);
 
     //photoswipe libraries
     wp_register_script('photoswipe-core', get_template_directory_uri().'/assets/js/photoswipe.min.js');
@@ -187,7 +188,7 @@ function get_single_post_byline(){
         $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
             get_edit_post_link());
     }
-    $commentLink = '<a href="#elegance-comments-area">' . (get_comments_number() > 0 ? get_comments_number() . _n(' comment', ' comments', get_comments_number(), 'elegance') : 'Leave a comment') . '</a>';
+    $commentLink = '<a class="scrollable" data-destination="#elegance-comments-area" href="#">' . (get_comments_number() > 0 ? get_comments_number() . _n(' comment', ' comments', get_comments_number(), 'elegance') : 'Leave a comment') . '</a>';
     return sprintf('<h1 class="entry-title">%s</h1><div class="single-meta">by %s | %s | %s%s</div>',
         get_the_title(),
         get_the_author(),

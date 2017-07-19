@@ -21,13 +21,4 @@ $(document).ready(function(){
     }
     
     window.onresize = resize;
-
-    $('a.scrollable').on('click',function(){
-        var selector = $(this).data('destination');
-        $('html,body').animate(
-            {scrollTop : $(selector).offset().top},
-            '1000'    
-        );
-    });
-
 });
