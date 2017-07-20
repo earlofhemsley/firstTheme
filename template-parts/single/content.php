@@ -14,7 +14,7 @@
         </figure>
 <?php
     endif;
-    echo sprintf('<div class="%s">%s</div>',
+    printf('<div class="%s">%s</div>',
         "single-content",
         apply_filters('the_content', get_the_content()) 
     );
