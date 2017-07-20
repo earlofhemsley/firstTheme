@@ -290,12 +290,57 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .single-post-links{
-    display:none;
+    display:block;
+    padding: 10px;
+    margin-top: 20px;
+    border-top: solid 1px #dedede;
+    text-align:center;
 }
+
+.single-post-links > span{
+    display:block;
+    margin: 3px 0;
+}
+
+
+/*********************
+ * TAG STYLES
+ * ******************/
+.elegance-tag-list{
+    text-align:center;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+.elegance-tag{
+    padding: 5px 3px;
+    margin: 0 5px;
+    background-color: black;
+    border-radius:3px;
+}
+
+.elegance-tag a{
+    color: white;
+    text-decoration:none;
+}
+
+.elegance-tag a:hover{
+    text-decoration:underline;
+}
+
+.elegance-tag .glyphicon{
+    color:white;
+    margin-right:8px;
+}
+
 
 /*********************
  * COMMENT STYLES
  * ******************/
+#elegance-comments-area{
+    border-top: 1px solid #dedede;
+}
+
 .elegance-comment-form-required{
     color:#a00;
 }
@@ -495,11 +540,13 @@ h1,h2,h3,h4,h5,h6{
         margin:0 0 20px 20px;
     }
 
-    .single-post-links{
-        display:block;
-        padding: 10px;
-        margin-top: 20px;
-        border-top: solid 1px #dedede;
+    .single-post-links, .elegance-tag-list{
+        text-align: left;
+    }
+    
+    .single-post-links > span{
+        display: inline;
+        margin:0;
     }
 
     .single-next-post-link{
