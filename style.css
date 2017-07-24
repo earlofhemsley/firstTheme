@@ -289,11 +289,15 @@ h1,h2,h3,h4,h5,h6{
     font-family:courier;
 }
 
+.elegance-single-post-meta{
+    border-top: solid 1px #dedede;
+    margin: 20px 0;
+    border-bottom: solid 1px #dedede;
+}
+
 .single-post-links{
     display:block;
     padding: 10px;
-    margin-top: 20px;
-    border-top: solid 1px #dedede;
     text-align:center;
 }
 
@@ -310,6 +314,7 @@ h1,h2,h3,h4,h5,h6{
     text-align:center;
     margin: 10px 0;
     padding: 10px 0;
+    line-height:30px;
 }
 
 .elegance-tag{
@@ -317,28 +322,24 @@ h1,h2,h3,h4,h5,h6{
     margin: 0 5px;
     background-color: black;
     border-radius:3px;
+    color:white;
 }
 
 .elegance-tag a{
     color: white;
     text-decoration:none;
+    margin-left: 7px;
 }
 
 .elegance-tag a:hover{
     text-decoration:underline;
 }
 
-.elegance-tag .glyphicon{
-    color:white;
-    margin-right:8px;
-}
-
-
 /*********************
  * COMMENT STYLES
  * ******************/
 #elegance-comments-area{
-    border-top: 1px solid #dedede;
+    margin-top: 20px;
 }
 
 .elegance-comment-form-required{
