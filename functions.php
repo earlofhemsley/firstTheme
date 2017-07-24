@@ -466,6 +466,23 @@ EOT;
 }
 endif;
 
+if(!function_exists('elegance_post_categories')):
+function elegance_post_categories(){
+    $categories = wp_get_post_categories(get_the_ID(), array('fields' => 'all'));
+    $count = 1;
+    echo '<div class="elegance-single-post-categories">Filed under: ';
+    foreach($categories as $cat){
+        $comma = ($count != count($categories)) ? ', ' : '';
+        $url = get_category_link($cat->term_id);
+        echo <<< EOT
+            <span class="elegance-post-category"><a href="$url">{$cat->name}$comma</a></span>
+EOT;
+        $count++;
+    }
+    echo '</div><!-- .elegance-post-categories -->';
+}
+endif;
+
 if(!function_exists('elegance_add_class_to_comment_link')):
 function elegance_add_class_to_comment_link($link, $args, $comment, $post){
     $link = str_replace("class='comment-reply-link'", "class='comment-reply-link btn btn-xs btn-primary'", $link);

@@ -11,7 +11,8 @@ get_header();
             }
             echo "<div class='elegance-single-post-meta'>";
                 elegance_post_links();
-            the_tags('<div class="elegance-tag-list"><span class="elegance-tag glyphicon glyphicon-tags">',
+                elegance_post_categories();
+                the_tags('<div class="elegance-tag-list"><span class="elegance-tag glyphicon glyphicon-tags">',
                 '</span><span class="elegance-tag glyphicon glyphicon-tags">',
                 '</span></div>');
             echo "</div>";
