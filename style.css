@@ -296,6 +296,10 @@ h1,h2,h3,h4,h5,h6{
     text-align:center;
 }
 
+.elegance-single-post-categories{
+    margin: 0 0 10px;
+}
+
 .single-post-links{
     display:block;
     padding: 10px;
@@ -311,7 +315,7 @@ h1,h2,h3,h4,h5,h6{
  * TAG STYLES
  * ******************/
 .elegance-tag-list{
-    margin: 10px 0;
+    margin: 0 0 10px;
     padding: 10px 0;
     line-height:30px;
 }
@@ -545,7 +549,7 @@ h1,h2,h3,h4,h5,h6{
     }
 
     .elegance-single-post-categories{
-        margin: 5px 0 0 5px;    
+        margin: 5px 0 10px 5px;    
     }
 
     .single-post-links > span{
