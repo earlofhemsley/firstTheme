@@ -1,4 +1,4 @@
-<article>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
     if(has_post_thumbnail(get_the_ID())){
         $thumbnail = get_post(get_post_thumbnail_id());
@@ -11,7 +11,7 @@
     }
 
     
-    printf("<div class='single-content format-aside'>%s</div>",
+    printf("<div class='single-content elegance-format-aside'>%s</div>",
         apply_filters('the_content', get_the_content())
     );
 
@@ -22,7 +22,7 @@
         );
     }
 
-    printf('<p class="format-aside-title">This update published under the title: %s</p><div class="single-meta">by %s, published on %s%s</div>',
+    printf('<p class="elegance-format-aside-title">This update published under the title: %s</p><div class="single-meta">by %s, published on %s%s</div>',
         get_the_title(),
         get_the_author(),
         get_the_date('M d, Y'),

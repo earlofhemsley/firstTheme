@@ -1,4 +1,4 @@
-<article>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
     echo get_single_post_byline();
     if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');

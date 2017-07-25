@@ -6,6 +6,7 @@ Author URI: http://landonhemsley.com/
 Version: 1.0.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: elegance
 You can do whatever you like with this theme as long as any modifications are not publicly released under the same name.
 */
 
@@ -26,6 +27,36 @@ You can do whatever you like with this theme as long as any modifications are no
     width:95%;
     max-width:1200px;
     margin:auto;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+        white-space: nowrap;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
 }
 
 /********************
@@ -233,6 +264,7 @@ h1,h2,h3,h4,h5,h6{
     width:100%;   
 }
 
+.wp-caption-text,
 .single-body .single-featured-image figcaption,
 .single-content figcaption
 {
@@ -266,8 +298,10 @@ h1,h2,h3,h4,h5,h6{
     padding-left:30px;
 }
 
+.wp-caption,
 .single-content figure,
-.single-content p > img{
+.single-content p > img
+{
     margin: 20px 0;
 }
 
@@ -375,6 +409,14 @@ h1,h2,h3,h4,h5,h6{
     margin-left:20px;
 }
 
+.bypostauthor{
+    /*nothing*/
+}
+
+.bypostauthor footer.elegance-comment-author-meta:before{
+    content:url(assets/img/star.png)
+}
+
 /*********************
  * FEED STYLES
  * ******************/
@@ -421,19 +463,27 @@ h1,h2,h3,h4,h5,h6{
     float:right;
 }
 
+.sticky{
+    /* none */
+}
+
+.sticky a::before{
+    content:url(assets/img/sticky.png);
+}
+
 
 /*********************
  * SPECIAL POST FORMAT STYLES
  * ******************/
-.format-status{
+.elegance-format-status{
     margin: 20px 0;
 }
 
-.format-status * {
+.elegance-format-status * {
     font-size:25px;
 }
 
-.format-aside{
+.elegance-format-aside{
     background: black;
     color: white;
     border: white 1px solid;
@@ -442,11 +492,11 @@ h1,h2,h3,h4,h5,h6{
     margin: 15px 0;
 }
 
-.format-aside * {
+.elegance-format-aside * {
     font-size:20px;
 }
 
-.format-aside-title{
+.elegance-format-aside-title{
     margin-left: 10px;
     color:grey;
 }

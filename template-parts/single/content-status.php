@@ -1,9 +1,9 @@
-<article>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
     
     echo get_single_post_byline();
 
-    printf("<div class='single-content format-status'>%s</div>",
+    printf("<div class='single-content elegance-format-status'>%s</div>",
         apply_filters('the_content', get_the_content())
     );
     
