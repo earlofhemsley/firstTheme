@@ -185,12 +185,17 @@ function get_single_post_byline(){
             get_edit_post_link());
     }
     $commentLink = '<a class="scrollable" data-destination="#elegance-comments-area" href="#">' . (get_comments_number() > 0 ? get_comments_number() . _n(' comment', ' comments', get_comments_number(), 'elegance') : 'Leave a comment') . '</a>';
-    return sprintf('<h1 class="entry-title">%s</h1><div class="single-meta">by %s | %s | %s%s</div>',
+
+    $pagesLink = get_elegance_link_pages();
+    if($pagesLink) $pagesLink = '&nbsp;|&nbsp;' . $pagesLink;
+
+    return sprintf('<h1 class="entry-title">%1$s</h1><div class="single-meta">by %2$s | %3$s | %4$s%5$s%6$s</div>',
         get_the_title(),
         get_the_author(),
         get_the_date('M d, Y'),
         $commentLink,
-        $editLink
+        $editLink,
+        $pagesLink
     );
 }
 endif;
@@ -485,6 +490,28 @@ function elegance_add_class_to_comment_link($link, $args, $comment, $post){
     return $link;
 }
 add_filter('comment_reply_link', 'elegance_add_class_to_comment_link', 10, 4);
+endif;
+
+if(!function_exists('is_single_paged')):
+function is_single_paged(){
+    global $multipage, $page;
+    return ($multipage && $page > 1);
+}
+endif;
+
+if(!function_exists('get_elegance_link_pages')):
+function get_elegance_link_pages(){
+    global $multipage;
+    $links = '';
+    if($multipage){
+        $links = wp_link_pages(array(
+            'before'    =>  '<span class="elegance-link-pages">'.__('Pages:'),
+            'after'     =>  '</span>',
+            'echo'      =>  0
+        ));
+    }
+    return $links;
+}
 endif;
 
 ?>

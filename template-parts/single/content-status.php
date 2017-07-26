@@ -9,7 +9,7 @@
     
     if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');
     
-    if(has_post_thumbnail(get_the_ID())){
+    if(has_post_thumbnail(get_the_ID()) && !is_single_paged()){
         $thumbnail = get_post(get_post_thumbnail_id());
         if($thumbnail->post_excerpt) $thumbnail->post_excerpt = "<figcaption>".$thumbnail->post_excerpt."</figcaption>";
         echo sprintf("<figure class='single-featured-image'> <img src='%s' alt='%s' /> %s </figure>",
@@ -18,6 +18,7 @@
             $thumbnail->post_excerpt
         );
     }
+    printf('<p>%s</p>', get_elegance_link_pages());
 ?>
 
 </article>

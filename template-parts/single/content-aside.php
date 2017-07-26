@@ -1,6 +1,6 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
-    if(has_post_thumbnail(get_the_ID())){
+    if(has_post_thumbnail(get_the_ID()) && !is_single_paged()){
         $thumbnail = get_post(get_post_thumbnail_id());
         if($thumbnail->post_excerpt) $thumbnail->post_excerpt = "<figcaption>".$thumbnail->post_excerpt."</figcaption>";
         echo sprintf("<figure class='single-featured-image'> <img src='%s' alt='%s' /> %s </figure>",
@@ -14,6 +14,7 @@
     printf("<div class='single-content elegance-format-aside'>%s</div>",
         apply_filters('the_content', get_the_content())
     );
+    printf("<p>%s</p>", get_elegance_link_pages());
 
     $editLink = "";
     if(is_single() && current_user_can('edit_post', get_the_ID())) { 
