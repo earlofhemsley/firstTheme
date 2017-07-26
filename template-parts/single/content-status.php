@@ -18,7 +18,7 @@
             $thumbnail->post_excerpt
         );
     }
-    printf('<p>%s</p>', get_elegance_link_pages());
+    echo get_elegance_link_pages();
 ?>
 
 </article>

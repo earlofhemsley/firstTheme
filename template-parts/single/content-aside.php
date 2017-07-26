@@ -14,7 +14,7 @@
     printf("<div class='single-content elegance-format-aside'>%s</div>",
         apply_filters('the_content', get_the_content())
     );
-    printf("<p>%s</p>", get_elegance_link_pages());
+    echo get_elegance_link_pages();
 
     $editLink = "";
     if(is_single() && current_user_can('edit_post', get_the_ID())) { 
