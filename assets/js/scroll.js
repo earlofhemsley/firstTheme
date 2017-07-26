@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jQuery(document).ready(function($){
     $('a.scrollable').on('click',function(){
         var selector = $(this).data('destination');
         $('html,body').animate(

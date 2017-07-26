@@ -13,7 +13,7 @@ var resize = function(){
 
 
 
-$(document).ready(function(){
+jQuery(document).ready(function($){
     resize();
     var mask = $("#home-header-mask:hidden");
     if(mask != null){
