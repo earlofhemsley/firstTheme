@@ -1,4 +1,5 @@
 <h1><?php the_title(); ?></h1>
+<?php printf("<p>%s</p>", get_elegance_link_pages()); ?>
 <?php
         if(has_post_thumbnail(get_the_ID())):
 ?>            
@@ -9,3 +10,4 @@
         endif;
 ?>
     <div class="single-content"><?php the_content(); ?></div>
+<?php printf("<p>%s</p>", get_elegance_link_pages()); ?>
