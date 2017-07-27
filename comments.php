@@ -16,6 +16,22 @@
         'max_depth' => '3',
     ));
 
+    $comments_links = paginate_comments_links(array(
+        'type'          => 'array',
+        'add_fragment'  => '#elegance-comments-area',
+        'prev_text'     => '&laquo;',
+        'next_text'     => '&raquo;',
+        'echo'          => false
+    ));
+
+    echo "<div class='elegance-comments-pagination'>";
+    foreach($comments_links as $link){
+        echo <<< EOT
+            <span class="elegance-comments-page-link">$link</span>
+EOT;
+    }
+    echo "</div><!-- .elegance-comments-pagination -->";
+
 
     $commenter = wp_get_current_commenter();
     $req = get_option('require_name_email');

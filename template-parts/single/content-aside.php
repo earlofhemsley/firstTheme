@@ -14,7 +14,6 @@
     printf("<div class='single-content elegance-format-aside'>%s</div>",
         apply_filters('the_content', get_the_content())
     );
-    echo get_elegance_link_pages();
 
     $editLink = "";
     if(is_single() && current_user_can('edit_post', get_the_ID())) { 
@@ -29,6 +28,11 @@
         get_the_date('M d, Y'),
         $editLink
     );
+    wp_link_pages(array(
+        'before'            =>  '<p class="elegance-single-pagination">',
+        'after'             =>  '</p>',
+        'next_or_number'    =>  'next'
+    ));
     
     if(is_active_sidebar('lmh-single')) dynamic_sidebar('lmh-single');
 ?>

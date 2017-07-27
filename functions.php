@@ -179,6 +179,7 @@ function get_home_section_query(){
 
 if(!function_exists('get_single_post_byline')):
 function get_single_post_byline(){
+    global $multipage;
     $editLink = "";
     if(current_user_can('edit_post', get_the_ID())) { 
         $editLink = sprintf('&nbsp;|&nbsp;<a href="%s" target="_blank"><span class="glyphicon glyphicon-pencil"></span></a>',  
@@ -186,8 +187,14 @@ function get_single_post_byline(){
     }
     $commentLink = '<a class="scrollable" data-destination="#elegance-comments-area" href="#">' . (get_comments_number() > 0 ? get_comments_number() . _n(' comment', ' comments', get_comments_number(), 'elegance') : 'Leave a comment') . '</a>';
 
-    $pagesLink = get_elegance_link_pages('span');
-    if($pagesLink) $pagesLink = '&nbsp;|&nbsp;' . $pagesLink;
+    $pagesLink = '';
+    if($multipage){
+        $pagesLink = '&nbsp;|&nbsp;' . wp_link_pages(array(
+            'before'    =>  "<span class='elegance-link-pages'>".__('Pages:'),
+            'after'     =>  "</span>",
+            'echo'      =>  0
+        ));
+    }
 
     return sprintf('<h1 class="entry-title">%1$s</h1><div class="single-meta">by %2$s | %3$s | %4$s%5$s%6$s</div>',
         get_the_title(),
@@ -499,19 +506,5 @@ function is_single_paged(){
 }
 endif;
 
-if(!function_exists('get_elegance_link_pages')):
-function get_elegance_link_pages($tag = 'p'){
-    global $multipage;
-    $links = '';
-    if($multipage){
-        $links = wp_link_pages(array(
-            'before'    =>  "<$tag class='elegance-link-pages'>".__('Pages:'),
-            'after'     =>  "</$tag>",
-            'echo'      =>  0
-        ));
-    }
-    return $links;
-}
-endif;
 
 ?>

@@ -18,7 +18,11 @@
             $thumbnail->post_excerpt
         );
     }
-    echo get_elegance_link_pages();
+    wp_link_pages(array(
+        'before'            =>  '<p class="elegance-single-pagination">',
+        'after'             =>  '</p>',
+        'next_or_number'    =>  'next'
+    ));
 ?>
 
 </article>

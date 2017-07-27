@@ -344,6 +344,10 @@ h1,h2,h3,h4,h5,h6{
     margin: 3px 0;
 }
 
+.elegance-single-pagination{
+    text-align: center;
+}
+
 
 /*********************
  * TAG STYLES
@@ -407,6 +411,22 @@ h1,h2,h3,h4,h5,h6{
 
 .elegance-comment-child{
     margin-left:20px;
+}
+
+.elegance-comments-pagination{
+    margin: 5px 0;
+    text-align: center;
+}
+
+.elegance-comments-page-link a, .elegance-comments-page-link span{
+    padding: 10px 13px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+}
+
+.elegance-comments-page-link a:hover{
+    text-decoration:underline;
+    background:#dedede;
 }
 
 .bypostauthor{
