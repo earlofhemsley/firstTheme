@@ -50,9 +50,7 @@ function elegance_meta_description_tag(){
         }
     }
     if(is_author() && !is_post_type_archive()){
-        //TODO: IMPLEMENT AUTHOR TEMPLATE
-        //TODO: FIND A SUITABLE PROPERTY TO OUTPUT
-        var_dump($obj);
+        $desc .= "Author profile page for {$obj->display_name}";
     }
     if(is_archive()){
         if($month || $year){ 
@@ -253,13 +251,14 @@ function get_single_post_byline(){
         ));
     }
 
-    return sprintf('<h1 class="entry-title">%1$s</h1><div class="single-meta">by %2$s | %3$s | %4$s%5$s%6$s</div>',
+    return sprintf('<h1 class="entry-title">%1$s</h1><div class="single-meta">by <a href="%7$s" target="_blank">%2$s</a> | %3$s | %4$s%5$s%6$s</div>',
         get_the_title(),
         get_the_author(),
         get_the_date('M d, Y'),
         $commentLink,
         $editLink,
-        $pagesLink
+        $pagesLink,
+        get_author_posts_url( get_the_author_meta( 'ID' ) )
     );
 }
 endif;
@@ -563,5 +562,15 @@ function is_single_paged(){
 }
 endif;
 
+if(!function_exists('elegance_add_profile_contact_methods')):
+function elegance_add_profile_contact_methods($contacts){
+    $contacts['facebook_url'] = 'Facebook Profile Url'; 
+    $contacts['twitter_url']  = 'Twitter Profile Url'; 
+    $contacts['linkedin_url'] = 'Linkedin Profile Url';
+
+    return $contacts; 
+}
+add_filter('user_contactmethods', 'elegance_add_profile_contact_methods');
+endif;
 
 ?>

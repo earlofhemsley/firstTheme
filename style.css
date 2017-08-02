@@ -10,6 +10,14 @@ Text Domain: elegance
 You can do whatever you like with this theme as long as any modifications are not publicly released under the same name.
 */
 
+/********************
+ * BOOSTRAP OVERRIDES/ENHANCEMENTS
+ * *****************/
+.btn-responsive{
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+}
 
 /********************
  * General Styles
@@ -249,8 +257,11 @@ h1,h2,h3,h4,h5,h6{
     margin-left:10px;
 }
 
-.single-meta{
+.single-meta, .single-meta a{
     color: #9f9f9f;
+}
+
+.single-meta{
     font-style: italic;
     margin: 0 0 10px 20px;
 }
@@ -438,6 +449,23 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /*********************
+ * AUTHOR PAGE STYLES
+ * ******************/
+#elegance-author-page-heading{
+    padding-bottom:15px;
+    border-bottom:1px solid #dedede;
+}
+.elegance-author-avatar{
+    float:right;
+    margin: 0 0 10px 15px;
+}
+
+.elegance-author-social-links{
+    margin-top: 10px;
+    text-align:center;
+}
+
+/*********************
  * FEED STYLES
  * ******************/
 .feed-article{
@@ -592,7 +620,11 @@ h1,h2,h3,h4,h5,h6{
 
 /* sm screens and larger */
 @media (min-width: 768px){
-
+    .btn-responsive {
+        padding:4px 9px;
+        font-size:90%;
+        line-height: 1.2;
+    }
 
     .lmh-home-root-menu-container{
         width:500px;
@@ -629,6 +661,10 @@ h1,h2,h3,h4,h5,h6{
 
     .single-next-post-link{
         float:right;
+    }
+
+    .elegance-author-social-links{
+        text-align:left;
     }
 
     .feed-featured-image{
