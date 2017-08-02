@@ -16,6 +16,11 @@ get_header();
                 break;
             }
         }
+        wp_link_pages(array(
+            'before'            =>  '<p class="elegance-single-pagination">',
+            'after'             =>  '</p>',
+            'next_or_number'    =>  'next'
+        ));
         
     endwhile; endif;
 ?>

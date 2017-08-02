@@ -29,6 +29,58 @@ function elegance_setup(){
 }
 add_action('after_setup_theme', 'elegance_setup');
 
+if(!function_exists('elegance_meta_description_tag')):
+function elegance_meta_description_tag(){
+    //based on https://developer.wordpress.org/reference/functions/wp_title/
+    
+    $desc = '';
+    $obj = get_queried_object();
+    $month= get_query_var('monthnum');
+    $year = get_query_var('year');
+    $day = get_query_var('day');
+
+    if( is_home() || is_front_page() ) $desc = get_bloginfo('description');
+    if( is_single() || (is_home() && !is_front_page()) || (is_page() && !is_front_page()) ){
+        if($obj){
+            if(!empty($obj->post_excerpt)) $desc = $obj->post_excerpt;
+            else{
+                preg_match("/(?:\w+(?:\W+|$)){0,30}/", preg_replace("/(?:\[.*\]|\r\n+)/", '', strip_tags($obj->post_content)), $matches);
+                $desc = $matches[0];
+            }
+        }
+    }
+    if(is_author() && !is_post_type_archive()){
+        //TODO: IMPLEMENT AUTHOR TEMPLATE
+        //TODO: FIND A SUITABLE PROPERTY TO OUTPUT
+        var_dump($obj);
+    }
+    if(is_archive()){
+        if($month || $year){ 
+            $desc = 'Posts for ';
+            if($month)
+            {
+                $desc .= date('F', strtotime("2017-$month-01"));
+                $desc .= !empty($day) ? " $day, " : ', '; 
+            }
+            if($year) $desc .= $year;
+        }
+    }
+    if(is_category()){
+        if($obj){
+            $desc = !empty($obj->description) ?  $obj->description : $obj->name . ' category';
+        }
+        var_dump($obj);
+    }
+    if(is_tag()){
+        if(obj){
+            $desc = $obj->name . ' tag';
+        }
+    }
+
+    if(!empty($desc)) echo "<meta name='description' content='$desc' />";
+}
+endif;
+
 function elegance_customizer_setup($wp_customize){
     /*
         Have a "front page" section that allows for up to five pages to be set
@@ -49,7 +101,9 @@ function elegance_customizer_setup($wp_customize){
     ));
     
     for($i = 1; $i<=5; $i++){
-        $wp_customize->add_setting('front_page_'.$i);
+        $wp_customize->add_setting('front_page_'.$i, array(
+            'sanitize_callback' => 'absint'
+        ));
         $wp_customize->add_control('front_page_'.$i, array(
             'manager'       =>      $wp_customize,
             'type'          =>      'dropdown-pages',
@@ -58,7 +112,10 @@ function elegance_customizer_setup($wp_customize){
             'section'       =>      'home_page_sections',
             'priority'      =>      $i,
         ));
-        $wp_customize->add_setting('front_page_widget_enable_'.$i);
+        $wp_customize->add_setting('front_page_widget_enable_'.$i, array(
+            'default'           => '',
+            'sanitize_callback' => function($input){ return isset($input); }
+        ));
         $wp_customize->add_control('front_page_widget_enable_'.$i, array(
             'label'         =>      "Enable Section $i widget area",
             'description'   =>      "If enabled, a widget area will appear within Section $i.",
