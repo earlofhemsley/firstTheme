@@ -57,7 +57,7 @@ EOT;
 ?>
         <<?php echo $tag; ?> id="elegance-comment-<?php comment_ID(); ?>" <?php comment_class( 'elegance-comment', $comment ); ?>>
             <div class="elegance-comment-content">
-                <?php _e( 'Pingback:' ); ?> <?php comment_author_link( $comment ); ?> <?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+                <?php _e( 'Pingback:', 'elegance' ); ?> <?php comment_author_link( $comment ); ?> <?php edit_comment_link( __( 'Edit', 'elegance' ), '<span class="edit-link">', '</span>' ); ?>
             </div>
 <?php
         }

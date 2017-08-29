@@ -246,7 +246,7 @@ function get_single_post_byline(){
     $pagesLink = '';
     if($multipage){
         $pagesLink = '&nbsp;|&nbsp;' . wp_link_pages(array(
-            'before'    =>  "<span class='elegance-link-pages'>".__('Pages:'),
+            'before'    =>  "<span class='elegance-link-pages'>".__('Pages:', 'elegance'),
             'after'     =>  "</span>",
             'echo'      =>  0
         ));

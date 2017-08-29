@@ -5,13 +5,19 @@
 </div>
 <div class="row lmh-home-sidebar">
     <div class="col-sm-4 lmh-home-sidebar-cell">
-        <h2><?php _e('Post categories'); ?></h2>
+        <h2><?php _e('Post categories', 'elegance'); ?></h2>
         <ul class="lmh-home-sidebar-list">
-            <?php wp_list_cats('sort_column=name&optioncount=1&hierarchical=0'); ?>
+            <?php 
+                wp_list_categories(array(
+                    'orderby' => 'name',
+                    'show_count' => 1,
+                    'style' => ''
+                ));
+            ?>
         </ul>
     </div>
     <div class="col-sm-4 lmh-home-sidebar-cell">
-        <h2><?php _e('Blog archives'); ?></h2>
+        <h2><?php _e('Blog archives', 'elegance'); ?></h2>
         <ul class="">
             <?php wp_get_archives('type=monthly'); ?>
         </ul>
