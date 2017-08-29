@@ -16,6 +16,8 @@ function elegance_setup(){
 	// Add theme support for HTML5 Semantic Markup
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
 
+    add_theme_support('title-tag');
+    
     add_theme_support('automatic-feed-links');
 
     add_theme_support('custom-logo', array(
@@ -27,21 +29,6 @@ function elegance_setup(){
     add_post_type_support('page', array('excerpt','title','author','custom-fields','comments','post-formats','revisions'));
 }
 add_action('after_setup_theme', 'elegance_setup');
-
-if(!function_exists('elegance_wp_title')):
-function elegance_wp_title($title, $sep){
-    global $paged, $page;
-    if(is_feed()) return $title;
-
-    $title = get_bloginfo('name') . $title;
-
-    if($paged >= 2 || $page >= 2)
-        $title = "$title $sep" . sprintf(' Page %s', max($paged, $page));
-
-    return $title;
-}
-endif;
-add_filter('wp_title', 'elegance_wp_title', 10, 2);
 
 if(!function_exists('elegance_meta_description_tag')):
 function elegance_meta_description_tag(){
