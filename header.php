@@ -7,7 +7,7 @@
     <head>
         <meta charset="<?php bloginfo('charset'); ?>" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?php echo get_bloginfo('name'); wp_title(); ?></title>
+        <title><?php  wp_title(); ?></title>
         <?php echo elegance_meta_description_tag(); ?>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 	    
