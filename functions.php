@@ -46,16 +46,16 @@ function elegance_meta_description_tag(){
             if(!empty($obj->post_excerpt)) $desc = $obj->post_excerpt;
             else{
                 preg_match("/(?:\w+(?:\W+|$)){0,30}/", preg_replace("/(?:\[.*\]|\r\n+)/", '', strip_tags($obj->post_content)), $matches);
-                $desc = $matches[0];
+                $desc = str_replace(array("'","\""), '', $matches[0]);
             }
         }
     }
     if(is_author() && !is_post_type_archive()){
-        $desc .= "Author profile page for {$obj->display_name}";
+        $desc .= __('Author profile page for', 'elegance'). " {$obj->display_name}";
     }
     if(is_archive()){
         if($month || $year){ 
-            $desc = 'Posts for ';
+            $desc = __('Posts for', 'elegance') . ' ';
             if($month)
             {
                 $desc .= date('F', strtotime("2017-$month-01"));
@@ -66,12 +66,12 @@ function elegance_meta_description_tag(){
     }
     if(is_category()){
         if($obj){
-            $desc = !empty($obj->description) ?  $obj->description : $obj->name . ' category';
+            $desc = !empty($obj->description) ?  $obj->description : $obj->name . ' ' . __('category', 'elegance');
         }
     }
     if(is_tag()){
         if(obj){
-            $desc = $obj->name . ' tag';
+            $desc = $obj->name . ' ' . __('tag', 'elegance');
         }
     }
 
@@ -93,8 +93,8 @@ function elegance_customizer_setup($wp_customize){
     $wp_customize->remove_section('static_front_page');
     
     $wp_customize->add_section('home_page_sections', array(
-        'title'         =>      "Front page customization",
-        'description'   =>      "Set the pages you want to appear on the home page, and activate home page widget areas. Leave blank for no page to be assigned. Check <a href='".get_admin_url()."widgets.php'>the widgets panel</a> to adjust widgets after saving.",
+        'title'         =>      __("Front page customization",'elegance'),
+        'description'   =>      __("Set the pages you want to appear on the home page, and activate home page widget areas. Leave blank for no page to be assigned. Check the widgets panel to adjust widgets after saving.",'elegance') . "<a href='".get_admin_url()."widgets.php'>Widgets</a>",
         'priority'      =>      30,
     ));
     
@@ -105,7 +105,7 @@ function elegance_customizer_setup($wp_customize){
         $wp_customize->add_control('front_page_'.$i, array(
             'manager'       =>      $wp_customize,
             'type'          =>      'dropdown-pages',
-            'description'   =>      "Section $i:", 
+            'description'   =>      __('Section','elegance') . " $i:", 
             'id'            =>      'front_page_'.$i,
             'section'       =>      'home_page_sections',
             'priority'      =>      $i,
@@ -115,8 +115,8 @@ function elegance_customizer_setup($wp_customize){
             'sanitize_callback' => function($input){ return isset($input); }
         ));
         $wp_customize->add_control('front_page_widget_enable_'.$i, array(
-            'label'         =>      "Enable Section $i widget area",
-            'description'   =>      "If enabled, a widget area will appear within Section $i.",
+            'label'         =>      __("Enable widget area for section", 'elegance') . " $i",
+            'description'   =>      __("If enabled, a widget area will appear within section", 'elegance') . " $i.",
             'section'       =>      'home_page_sections',
             'priority'      =>      $i,
             'type'          =>      'checkbox',
@@ -131,9 +131,9 @@ function elegance_widget_setup(){
     for($i = 1; $i <= 5; $i++){
         if(get_theme_mod('front_page_widget_enable_'.$i)){
             register_sidebar( array( 
-                'name' => 'Front Page Widget Area for Section '.$i,
+                'name' => __('Front page widget area for section', 'elegance') . " $i",
                 'id' => 'front-page-widget-'.$i,
-                'description' => 'This widget area corresponds with front page section '.$i,
+                'description' => __('This widget area corresponds with front page section', 'elegance') . " $i",
                 'before_widget' => '<div>',
                 'after_widget' => '</div>',
             ));
@@ -141,37 +141,37 @@ function elegance_widget_setup(){
     }
 
     register_sidebar(array(
-        'name' => 'Home Page Widget Area',
+        'name' => __('Home page widget area','elegance'),
         'id' => 'lmh-home-page',
-        'description' => 'Appears at the bottom of the home page.',
+        'description' => __('Appears at the bottom of the home page','elegance'),
         'before_widget' => '',
         'after_widget' => '',
     ));
     register_sidebar(array(
-        'name' => 'Primary Sidebar Widget Area',
+        'name' => __('Primary sidebar widget area','elegance'),
         'id' => 'lmh-primary',
-        'description' => 'Appears in the right rail of post pages.',
+        'description' => __('Appears in the right rail of post pages','elegance'),
         'before_widget' => '',
         'after_widget' => '',
     ));
     register_sidebar(array(
-        'name' => 'Secondary Sidebar Widget Area',
+        'name' => __('Secondary sidebar widget area','elegance'),
         'id' => 'lmh-secondary',
-        'description' => 'Appears in the right rail of post pages.',
+        'description' => __('Appears in the right rail of post pages','elegance'),
         'before_widget' => '',
         'after_widget' => '',
     ));
     register_sidebar(array(
-        'name' => 'Tertiary Sidebar Widget Area',
+        'name' => __('Tertiary sidebar widget area','elegance'),
         'id' => 'lmh-tertiary',
-        'description' => 'Appears in the right rail of post pages.',
+        'description' => __('Appears in the right rail of post pages','elegance'),
         'before_widget' => '',
         'after_widget' => '',
     ));
     register_sidebar(array(
-        'name' => 'Post & Page',
+        'name' => __('Post and page','elegance'),
         'id' => 'lmh-single',
-        'description' => 'Appears on single posts and pages',
+        'description' => __('Appears on single posts and pages','elegance'),
         'before_widget' => '',
         'after_widget' => '',
     ));
