@@ -68,7 +68,6 @@ function elegance_meta_description_tag(){
         if($obj){
             $desc = !empty($obj->description) ?  $obj->description : $obj->name . ' category';
         }
-        var_dump($obj);
     }
     if(is_tag()){
         if(obj){
