@@ -8,8 +8,8 @@
                 get_template_part('template-parts/feed/body');
             }
         }
-        $previous = get_previous_posts_link('&laquo; Newer posts');
-        $next = get_next_posts_link('Older posts &raquo;');
+        $previous = get_previous_posts_link('&laquo; '. __('Newer posts','elegance'));
+        $next = get_next_posts_link(__('Older posts', 'elegance') . ' &raquo;');
         if($previous || $next):
     ?>
         <div class="elegance-feed-post-links">
