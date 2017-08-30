@@ -2,7 +2,7 @@
 <div class="row side-padded">
     <div class="col-xs-12" id="elegance-author-page-heading">
         <div class="elegance-author-avatar"><?php echo get_avatar(get_the_author_meta('email'), 120); ?></div>
-        <h2>Posts written by <?php the_author(); ?></h2>
+        <h2><?php _e('Posts written by ','elegance'); the_author(); ?></h2>
         <p><?php echo get_the_author_meta('description'); ?></p>
         <div class="elegance-author-social-links">
             <a class="btn btn-primary btn-responsive" href="<?php echo get_the_author_meta('facebook_url'); ?>" target="_blank">Facebook</a>
@@ -20,8 +20,8 @@
                 get_template_part('template-parts/feed/body');
             }
         }
-        $previous = get_previous_posts_link('&laquo; Newer posts');
-        $next = get_next_posts_link('Older posts &raquo;');
+        $previous = get_previous_posts_link('&laquo; '. __('Newer posts','elegance'));
+        $next = get_next_posts_link(__('Older posts', 'elegance') . ' &raquo;');
         if($previous || $next):
     ?>
         <div class="elegance-feed-post-links">
