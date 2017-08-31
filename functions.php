@@ -231,7 +231,6 @@ function get_home_section_query(){
  * must be used within the loop
  * intended to be used for single content with single content
  **********************/
-
 if(!function_exists('get_single_post_byline')):
 function get_single_post_byline(){
     global $multipage;
@@ -251,14 +250,15 @@ function get_single_post_byline(){
         ));
     }
 
-    return sprintf('<h1 class="entry-title">%1$s</h1><div class="single-meta">by <a href="%7$s" target="_blank">%2$s</a> | %3$s | %4$s%5$s%6$s</div>',
+    return sprintf('<h1 class="entry-title">%1$s</h1><div class="single-meta">%8$s <a href="%7$s" target="_blank">%2$s</a> | %3$s | %4$s%5$s%6$s</div>',
         get_the_title(),
         get_the_author(),
         get_the_date('M d, Y'),
         $commentLink,
         $editLink,
         $pagesLink,
-        get_author_posts_url( get_the_author_meta( 'ID' ) )
+        get_author_posts_url( get_the_author_meta( 'ID' ) ),
+        __('by', 'elegance')
     );
 }
 endif;
@@ -534,7 +534,7 @@ if(!function_exists('elegance_post_categories')):
 function elegance_post_categories(){
     $categories = wp_get_post_categories(get_the_ID(), array('fields' => 'all'));
     $count = 1;
-    echo '<div class="elegance-single-post-categories">Filed under: ';
+    echo '<div class="elegance-single-post-categories">'. __('Filed under', 'elegance') . ': ';
     foreach($categories as $cat){
         $comma = ($count != count($categories)) ? ', ' : '';
         $url = get_category_link($cat->term_id);
