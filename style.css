@@ -141,7 +141,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 .lmh-home-search label{
-    padding: 5px;
+    font-size: 30px;
+    font-weight: normal;
 }
 
 .lmh-home-search input,
@@ -637,6 +638,12 @@ h1,h2,h3,h4,h5,h6{
 
     .lmh-home-root-menu-container li.menu-item{
         width: 164px;
+    }
+
+    .lmh-home-search label{
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px;
     }
 
     .single-content .alignleft{
