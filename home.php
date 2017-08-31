@@ -39,7 +39,7 @@ wp_reset_query();
 ?>
     <div class="home-padded text-center" id="blogroll">
         <div class="elegance-page-links">
-            <h3><?php previous_posts_link('Newer posts'); ?></h3>
+            <h3><?php previous_posts_link(__('Newer posts', 'elegance')); ?></h3>
         </div>
 <?php
         if(!is_paged()) echo '<h2>Blog</h2>';
@@ -53,7 +53,7 @@ wp_reset_query();
         }
 ?>
         <div class="elegance-page-links">
-            <h3><?php next_posts_link('Older posts'); ?></h3>
+            <h3><?php next_posts_link(__('Older posts','elegance')); ?></h3>
         </div>
     </div>
 <?php
