@@ -22,7 +22,8 @@
         );
     }
 
-    printf('<p class="elegance-format-aside-title">This update published under the title: %s</p><div class="single-meta">by %s, published on %s%s</div>',
+    printf('<p class="elegance-format-aside-title">%s: %s</p><div class="single-meta">by %s, published on %s%s</div>',
+        __('This update published under the title', 'elegance'),
         get_the_title(),
         get_the_author(),
         get_the_date('M d, Y'),

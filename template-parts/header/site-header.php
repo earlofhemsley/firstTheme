@@ -4,7 +4,7 @@
             <div class="col-xs-12 col-sm-3 col-md-2 text-center">
                 <?php the_custom_logo(); ?>
                 <button class="lmhcustom-nav-toggle btn btn-xs" data-toggle="collapse" data-target="#nav-collapse">
-                    <span class="">Show Menu</span>
+                    <span class=""><?php _e('Show Menu', 'elegance'); ?></span>
                 </button>
             </div>
             <div class="col-xs-12 col-sm-9 col-md-10">

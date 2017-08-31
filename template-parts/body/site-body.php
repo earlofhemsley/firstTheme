@@ -31,7 +31,7 @@
         endwhile; 
     else:
 ?>
-    <p>The post you are looking for cannot be found.</p>
+    <p><?php _e('The post you are looking for cannot be found.','elegance'); ?></p>
 <?php
     endif;
 ?>
