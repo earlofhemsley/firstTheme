@@ -505,7 +505,7 @@ function elegance_post_links(){
     global $post;
     $prev = (is_attachment()) ? get_post($post->post_parent) : get_adjacent_post();
     $next = get_adjacent_post(false, '', false);
-    if(!prev && !next) return;
+    if(!$prev && !$next) return;
 
     $plink = $prev ? sprintf('<span class="single-prev-post-link"><a href="%s">%s</a></span>', 
         get_post_format($prev->ID) == 'link' ?
