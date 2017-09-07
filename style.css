@@ -200,10 +200,8 @@ nav.nav{
 }
 
 .lmhcustom-root-menu-container ul li.menu-item{
-    display:inline-block;
-    width: 32%;
     text-align:center;
-    padding:0px 10px 10px 10px;
+    padding: 10px;
 }
 
 .lmhcustom-root-menu-container > ul > li > a{
@@ -624,6 +622,12 @@ h1,h2,h3,h4,h5,h6{
 
 /* sm screens and larger */
 @media (min-width: 768px){
+    .lmhcustom-root-menu-container ul li.menu-item {
+        padding: 0 10px 10px 10px;
+        display: inline-block;
+        width: 32%;
+    }
+    
     .btn-responsive {
         padding:4px 9px;
         font-size:90%;
