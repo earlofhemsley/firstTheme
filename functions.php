@@ -509,7 +509,6 @@ add_action('admin_print_footer_scripts', 'elegance_add_pre_quicktag');
 
 if(!function_exists('elegance_mce_plugins') && !function_exists('elegance_mce_buttons_2')):
 function elegance_mce_plugins($plugin_array){
-    $plugin_array['code'] = get_template_directory_uri().'/assets/tinymce-plugins/code/plugin.min.js';
     $plugin_array['codesample'] = get_template_directory_uri().'/assets/tinymce-plugins/codesample/plugin.min.js';
     return $plugin_array;
 }
@@ -517,7 +516,6 @@ add_filter('mce_external_plugins', 'elegance_mce_plugins');
 
 function elegance_mce_buttons_2($buttons){
     array_unshift($buttons, 'styleselect');
-    $buttons[] = 'code';
     $buttons[] = 'codesample';
 
     return $buttons;
