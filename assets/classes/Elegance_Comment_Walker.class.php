@@ -1,13 +1,13 @@
 <?php
-class Elegance_Comment_Walker extends Walker_Comment{
+class Elegance_Comment_Walker extends Walker_Comment {
 
-    public function paged_walk($elements, $max_depth, $page_num, $per_page){
-        $args = array_slice(func_get_args(), 4);
-        $args = $args[0];
+    public function paged_walk($elements, $max_depth, $page_num, $per_page, ...$args): string
+    {
+        $myArgs = $args[0];
 
-        $output = parent::paged_walk($elements, $max_depth, $page_num, $per_page, $args);
+        $output = parent::paged_walk($elements, $max_depth, $page_num, $per_page, $myArgs);
 
-        if($args['style'] != 'div') return "<{$args['style']} class='elegance-comment-top-level'>".$output."</{$args['style']}>";
+        if($myArgs['style'] != 'div') return "<{$myArgs['style']} class='elegance-comment-top-level'>".$output."</{$myArgs['style']}>";
         else return $output;
     }
 
@@ -62,7 +62,7 @@ EOT;
 <?php
         }
     
-    private function prepare_values($comment, $depth, $args){
+    private function prepare_values($comment, $depth, $args): array {
         $props = array();
         $props['subtag_open'] = '';
         $props['subtag_close'] = '';
@@ -72,7 +72,10 @@ EOT;
         if('div' != $args['style'] || 'html5' == $args['format']){
             $add_below = 'elegance-comment-subdiv'; 
 
-            if('div' != $args['style']) $props['tag'] = 'li';
+            if('div' != $args['style']) {
+                $props['tag'] = 'li';
+            }
+
             $subtag = ('html5' == $args['format']) ? 'article' : 'div';
             $props['subtag_open'] = '<'.$subtag.' id="elegance-comment-subdiv-'.$comment->comment_ID.'">';
             $props['subtag_close'] = '</'.$subtag.'>';
@@ -107,5 +110,4 @@ EOT;
 
         return $props;
     }
-
 }
