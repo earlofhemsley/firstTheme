@@ -201,13 +201,6 @@ function elegance_scripts_styles(){
     wp_register_script('photoswipe-render', get_template_directory_uri().'/assets/js/ps-render.js', array('jquery','photoswipe-core','photoswipe-ui'));
     wp_register_style('photoswipe-css', get_template_directory_uri().'/assets/css/photoswipe.css');
     wp_register_style('photoswipe-default-skin-css', get_template_directory_uri().'/assets/css/default-photoswipe-skin/default-skin.css');
-
-    //tinymce prism style
-    if(is_single()){
-        wp_enqueue_script('tinymce-codesample-prism-js', get_template_directory_uri().'/assets/tinymce-plugins/codesample/js/prism.js');
-        wp_enqueue_style('tinymce-codesample-prism-css', get_template_directory_uri().'/assets/tinymce-plugins/codesample/css/prism.css');
-        
-    }
 }
 add_action('wp_enqueue_scripts','elegance_scripts_styles');
 
@@ -476,8 +469,8 @@ function elegance_get_feed_image_url(){
 
 function elegance_sanitize_code_content($content){
     if(preg_match('/(\<code.*\>)(.*)\<\/code\>/isU', $content)){
-        return preg_replace_callback('/(\<code.*\>)(.*)\<\/code\>/isU',
-            function($match){ return $match[1] . str_replace('<', '&lt;', $match[2]) . "</code>"; }, 
+        return preg_replace_callback('/(\<code.*\>)(.*)(\<\/code\>)/isU',
+            function($match) { return $match[1] . str_replace('<', '&lt;', $match[2]) . $match[3]; },
             $content);
     } 
     else return $content;
@@ -486,44 +479,14 @@ add_filter('the_content', 'elegance_sanitize_code_content', 8);
 
 function elegance_sanitize_pre_content($content){
     if(preg_match('/(\<pre[^\<\>]*\>)(?!\<code\>)(.*)\<\/pre\>/isU', $content)){
-        return preg_replace_callback('/(\<pre[^\<\>]*\>)(?!\<code\>)(.*)\<\/pre\>/isU',
-            function($match){ return $match[1] . str_replace('<', '&lt;', $match[2]) . "</pre>"; }, 
+        return preg_replace_callback('/(\<pre[^\<\>]*\>)(?!\<code\>)(.*)(\<\/pre\>)/isU',
+            function($match){ return $match[1] . str_replace('<', '&lt;', $match[2]) . $match[3]; },
             $content);
     } 
     else return $content;
 }
 add_filter('the_content', 'elegance_sanitize_pre_content', 9);
  
-function elegance_add_pre_quicktag(){
-    if(wp_script_is('quicktags')){
-        echo <<< EOT
-        <script type="text/javascript">
-            QTags.addButton("elegance_pre", "pre", "<pre lang='php'>", "</pre>", "p", "Preformatted text", 111);
-        </script>
-EOT;
-
-    }
-}
-add_action('admin_print_footer_scripts', 'elegance_add_pre_quicktag');
-
-if(!function_exists('elegance_mce_plugins') && !function_exists('elegance_mce_buttons_2')):
-function elegance_mce_plugins($plugin_array){
-    $plugin_array['codesample'] = get_template_directory_uri().'/assets/tinymce-plugins/codesample/plugin.min.js';
-    return $plugin_array;
-}
-add_filter('mce_external_plugins', 'elegance_mce_plugins');
-
-function elegance_mce_buttons_2($buttons){
-    array_unshift($buttons, 'styleselect');
-    $buttons[] = 'codesample';
-
-    return $buttons;
-}
-add_filter('mce_buttons_2', 'elegance_mce_buttons_2');
-endif;
-
-
-
 if(!function_exists('elegance_post_links')):
 function elegance_post_links(){
     global $post;
