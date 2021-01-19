@@ -335,7 +335,7 @@ EOT;
 endif;
 
 if(!function_exists('elegance_gallery_shortcode')):
-function elegance_gallery_shortcode($output = '', $atts, $instance){
+function elegance_gallery_shortcode($output, $atts, $instance){
     wp_enqueue_script('photoswipe-core');
     wp_enqueue_script('photoswipe-ui');
     wp_enqueue_script('photoswipe-render');
@@ -367,7 +367,6 @@ function elegance_gallery_shortcode($output = '', $atts, $instance){
         'link'       => ''
     ), $atts, 'gallery' );
 
-    $attachments = array();
     $query_vars = array(
             'post_status' => 'inherit', 
             'post_type' => 'attachment', 
@@ -581,7 +580,7 @@ add_filter('comment_reply_link', 'elegance_add_class_to_comment_link', 10, 4);
 endif;
 
 if(!function_exists('is_single_paged')):
-function is_single_paged(){
+function is_single_paged(): bool {
     global $multipage, $page;
     return ($multipage && $page > 1);
 }
