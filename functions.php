@@ -327,6 +327,10 @@ EOT;
 }
 endif;
 
+/**
+ * this code is mostly deprecated since the gallery shortcode, while it still works, has been supplanted
+ * by the gutenberg gallery block. This needs to be reworked to be compatible with gutenberg gallery blocks
+ */
 if(!function_exists('elegance_gallery_shortcode')):
 function elegance_gallery_shortcode($output, $atts, $instance){
     wp_enqueue_script('photoswipe-core');
@@ -373,19 +377,18 @@ function elegance_gallery_shortcode($output, $atts, $instance){
     } elseif ( ! empty( $settings['exclude'] ) ) {
         $query_vars['exclude'] = $settings['exclude'];
     }
-    $sortedIds = array_map( function($p){return $p->ID;}, get_posts($query_vars));
-    
-    
-    $return = getPhotoSwipeFrame();
+    $sortedIds = array_map( function($p) { return $p->ID; }, get_posts($query_vars));
+
+    $myContent = getPhotoSwipeFrame();
     $guid = uniqid();
-    $return .= <<< EOT
+    $myContent .= <<< EOT
         <div data-guid="$guid" class="gallery gallery-columns-{$settings['columns']} gallery-size-{$settings['size']}">
 EOT;
     foreach($sortedIds as $id){
         $thumbnail = wp_get_attachment_image_src($id);
         $fullSize = wp_get_attachment_image_src($id, $settings['size']);
         $excerpt = apply_filters('the_excerpt', get_post_field('post_excerpt',$id));
-        $return .= <<< EOT
+        $myContent .= <<< EOT
             <{$settings['itemtag']} class="gallery-item">
                 <{$settings['icontag']} class="gallery-icon landscape">
                     <a href="#" class="photoswipe-activate" data-src="{$fullSize[0]}" data-size="{$fullSize[1]}x{$fullSize[2]}">
@@ -399,7 +402,11 @@ EOT;
 EOT;
 
     }
-    $return .= "</div>";
+    $myContent .= "</div>";
+
+    if (!empty($myContent)) {
+        $return = $myContent;
+    }
 
     return $return;
 }
