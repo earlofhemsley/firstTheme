@@ -467,26 +467,9 @@ function elegance_get_feed_image_url(){
     }
 }
 
-function elegance_sanitize_code_content($content){
-    if(preg_match('/(\<code.*\>)(.*)\<\/code\>/isU', $content)){
-        return preg_replace_callback('/(\<code.*\>)(.*)(\<\/code\>)/isU',
-            function($match) { return $match[1] . str_replace('<', '&lt;', $match[2]) . $match[3]; },
-            $content);
-    } 
-    else return $content;
-}
-add_filter('the_content', 'elegance_sanitize_code_content', 8);
-
-function elegance_sanitize_pre_content($content){
-    if(preg_match('/(\<pre[^\<\>]*\>)(?!\<code\>)(.*)\<\/pre\>/isU', $content)){
-        return preg_replace_callback('/(\<pre[^\<\>]*\>)(?!\<code\>)(.*)(\<\/pre\>)/isU',
-            function($match){ return $match[1] . str_replace('<', '&lt;', $match[2]) . $match[3]; },
-            $content);
-    } 
-    else return $content;
-}
-add_filter('the_content', 'elegance_sanitize_pre_content', 9);
- 
+/**
+ * this function prepends and appends tags to links that come at the end of posts
+ */
 if(!function_exists('elegance_post_links')):
 function elegance_post_links(){
     global $post;
