@@ -550,4 +550,19 @@ function elegance_add_profile_contact_methods($contacts){
 add_filter('user_contactmethods', 'elegance_add_profile_contact_methods');
 endif;
 
+/**
+ * added to enable webfinger customization so that I can stand up and use
+ * my own idp in relation to tailscale
+ */
+if (has_filter('webfinger_data') && !function_exists('add_to_webfinger_spec')):
+    function add_to_webfinger_spec($array) {
+        $array["links"][] = array(
+            'rel' => 'http://openid.net/specs/connect/1.0/issuer',
+            'href' => 'https://hemsnas-ueizg5.zitadel.cloud/.well-known/openid-configuration'
+        );
+        return $array;
+    }
+    add_filter('webfinger_data', 'add_to_webfinger_spec');
+endif;
+
 ?>
