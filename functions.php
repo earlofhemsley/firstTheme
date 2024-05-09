@@ -558,7 +558,7 @@ if (has_filter('webfinger_data') && !function_exists('add_to_webfinger_spec')):
     function add_to_webfinger_spec($array) {
         $array["links"][] = array(
             'rel' => 'http://openid.net/specs/connect/1.0/issuer',
-            'href' => 'https://hemsnas-ueizg5.zitadel.cloud'
+            'href' => 'https://warp-drive-bkewnm.zitadel.cloud'
         );
         return $array;
     }
